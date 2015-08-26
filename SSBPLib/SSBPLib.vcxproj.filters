@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SSBPLib">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="SSBPLib\SSPlayerImplement">
+      <UniqueIdentifier>{f06d8a10-76e0-41d1-8ac9-023469dff03b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SSBPLib\common">
+      <UniqueIdentifier>{207f0679-936b-40f8-b493-cb9467b3d7c9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SSBPLib\SS5Player.cpp">
+      <Filter>SSBPLib</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\SS5PlayerPlatform.cpp">
+      <Filter>SSBPLib</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\SS5PlayerTypes.cpp">
+      <Filter>SSBPLib</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\SSPlayerStatus.cpp">
+      <Filter>SSBPLib</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\SSPlayerImplement\AnimeCache.cpp">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\SSPlayerImplement\CellCache.cpp">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\SSPlayerImplement\CustomSprite.cpp">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\SSPlayerImplement\InstancePartStatus.cpp">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\common\ssplayer_matrix.cpp">
+      <Filter>SSBPLib\common</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\common\SSPoint.cpp">
+      <Filter>SSBPLib\common</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\common\SSRect.cpp">
+      <Filter>SSBPLib\common</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\common\SSSize.cpp">
+      <Filter>SSBPLib\common</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\SS5ResourceCache.cpp">
+      <Filter>SSBPLib</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBPLib\SS5UserData.cpp">
+      <Filter>SSBPLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SSBPLib\SS5EventListener.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SS5Player.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SS5PlayerData.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SS5PlayerPlatform.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SS5PlayerTypes.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SS5Renderer.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SSPlayerStatus.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\ssShader_frag.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SSPlayerImplement\AnimeCache.h">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SSPlayerImplement\CellCache.h">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SSPlayerImplement\CustomSprite.h">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SSPlayerImplement\DataArrayReader.h">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SSPlayerImplement\Impl.h">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SSPlayerImplement\InstancePartStatus.h">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SSPlayerImplement\ResourceSet.h">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SSPlayerImplement\ToPointer.h">
+      <Filter>SSBPLib\SSPlayerImplement</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\common\ssplayer_matrix.h">
+      <Filter>SSBPLib\common</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\common\SSPoint.h">
+      <Filter>SSBPLib\common</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\common\SSRect.h">
+      <Filter>SSBPLib\common</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\common\SSSize.h">
+      <Filter>SSBPLib\common</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\common\SSUtil.h">
+      <Filter>SSBPLib\common</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SS5ResourceCache.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SSBPLib\SS5UserData.h">
+      <Filter>SSBPLib</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
