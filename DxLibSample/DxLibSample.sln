@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuickStart", "QuickStart\QuickStart.vcxproj", "{0585814D-41E1-44B4-9E62-742C01B52589}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleViewer", "SimpleViewer\SimpleViewer.vcxproj", "{ADC72425-5D8F-4525-9ABB-43FA36616102}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SSBPLib", "..\SSBPLib\SSBPLib.vcxproj", "{2B1CB8D7-725B-4AC0-B96B-F76386F4BE77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0585814D-41E1-44B4-9E62-742C01B52589}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0585814D-41E1-44B4-9E62-742C01B52589}.Debug|Win32.Build.0 = Debug|Win32
+		{0585814D-41E1-44B4-9E62-742C01B52589}.Release|Win32.ActiveCfg = Release|Win32
+		{0585814D-41E1-44B4-9E62-742C01B52589}.Release|Win32.Build.0 = Release|Win32
+		{ADC72425-5D8F-4525-9ABB-43FA36616102}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ADC72425-5D8F-4525-9ABB-43FA36616102}.Debug|Win32.Build.0 = Debug|Win32
+		{ADC72425-5D8F-4525-9ABB-43FA36616102}.Release|Win32.ActiveCfg = Release|Win32
+		{ADC72425-5D8F-4525-9ABB-43FA36616102}.Release|Win32.Build.0 = Release|Win32
+		{2B1CB8D7-725B-4AC0-B96B-F76386F4BE77}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2B1CB8D7-725B-4AC0-B96B-F76386F4BE77}.Debug|Win32.Build.0 = Debug|Win32
+		{2B1CB8D7-725B-4AC0-B96B-F76386F4BE77}.Release|Win32.ActiveCfg = Release|Win32
+		{2B1CB8D7-725B-4AC0-B96B-F76386F4BE77}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
