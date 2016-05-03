@@ -69,7 +69,7 @@ void CustomSprite::updateMatrixAndOpacity(const SSMatrix& rootMatrix, int rootOp
 
 	
 	//アルファの伝播
-	m_state.m_opacity = ( m_state.m_opacity * parentOpacity ) / 255;
+	m_state.m_opacity = ( m_state.m_opacity * parentOpacity ) / 255.0;
 
 	//インスタンスパーツの親を設定
 	if (m_ssplayer){
