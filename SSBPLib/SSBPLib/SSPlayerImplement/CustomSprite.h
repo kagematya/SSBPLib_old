@@ -25,6 +25,8 @@ public:
 	void initialize();
 	void finalize();
 
+	void matrixUpdate(const SSMatrix& parentMatrix);
+
 public:
 	CustomSprite();
 	~CustomSprite();
