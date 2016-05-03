@@ -25,7 +25,7 @@ public:
 	void initialize();
 	void finalize();
 
-	void matrixUpdate(const SSMatrix& parentMatrix);
+	void updateMatrixAndOpacity(const SSMatrix& rootMatrix, int rootOpacity);
 
 public:
 	CustomSprite();

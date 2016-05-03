@@ -46,45 +46,51 @@ void CustomSprite::finalize()
 }
 
 
-void CustomSprite::matrixUpdate(const SSMatrix& parentMatrix)
+void CustomSprite::updateMatrixAndOpacity(const SSMatrix& rootMatrix, int rootOpacity)
 {
-	SSMatrix tmp;
-	SSMatrix mat;
-	CustomSprite* sprite = this;
-
-	sprite->m_state.matrixCompute(&mat);
-	mat *= parentMatrix;
-
-	sprite->m_mat = mat;
-	sprite->m_state.m_mat = mat;
-
-	if (sprite->m_parent)
-	{
-		CustomSprite* parent = sprite->m_parent;
-		//子供は親のステータスを引き継ぐ
-
-		sprite->m_state.m_opacity = ( sprite->m_state.m_opacity * parent->m_state.m_opacity ) / 255;
-
-		//インスタンスパーツの親を設定
-		if (sprite->m_ssplayer){
-			float x, y;
-			sprite->m_mat.getTranslation(&x, &y);
-
-			sprite->m_ssplayer->setPosition(x, y);
-			sprite->m_ssplayer->setScale(sprite->m_state.m_scaleX, sprite->m_state.m_scaleY);
-			sprite->m_ssplayer->setRotation(sprite->m_state.m_rotationX, sprite->m_state.m_rotationY, sprite->m_state.m_rotationZ);
-		}
-
+	SSMatrix parentMatrix;
+	int parentOpacity;
+	if(m_parent){
+		parentMatrix = m_parent->m_mat;
+		parentOpacity = m_parent->m_state.m_opacity;
+	}
+	else{
+		parentMatrix = rootMatrix;
+		parentOpacity = rootOpacity;
 	}
 
-	//cellの原点計算を行う
-	tmp.setTranslation(
-		sprite->m_rect.size.width * (0.5f - sprite->m_state.m_anchorX),	//デフォルトがanchorX == 0.5になってる
-		sprite->m_rect.size.height * (0.5f - sprite->m_state.m_anchorY)
-	);
-	sprite->m_state.m_mat = tmp  * sprite->m_state.m_mat;	//cellの原点移動をしてからmatrixが適用される形
+	//行列計算
+	SSMatrix mat;
+	m_state.matrixCompute(&mat);
+	mat *= parentMatrix;
 
-	sprite->m_isStateChanged = false;
+	m_mat = mat;
+	m_state.m_mat = mat;
+
+	
+	//アルファの伝播
+	m_state.m_opacity = ( m_state.m_opacity * parentOpacity ) / 255;
+
+	//インスタンスパーツの親を設定
+	if (m_ssplayer){
+		float x, y;
+		m_mat.getTranslation(&x, &y);
+
+		m_ssplayer->setPosition(x, y);
+		m_ssplayer->setScale(m_state.m_scaleX, m_state.m_scaleY);
+		m_ssplayer->setRotation(m_state.m_rotationX, m_state.m_rotationY, m_state.m_rotationZ);
+	}
+	
+
+	//cellの原点計算を行う
+	SSMatrix tmp;
+	tmp.setTranslation(
+		m_rect.size.width * (0.5f - m_state.m_anchorX),	//デフォルトがanchorX == 0.5になってる
+		m_rect.size.height * (0.5f - m_state.m_anchorY)
+	);
+	m_state.m_mat = tmp  * m_state.m_mat;	//cellの原点移動をしてからmatrixが適用される形
+
+	m_isStateChanged = false;
 }
 
 
