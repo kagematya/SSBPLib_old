@@ -1,4 +1,4 @@
-#include "SSPlayerStatus.h"
+ï»¿#include "SSPlayerStatus.h"
 #include "common/SSUtil.h"
 #include "common/SSRect.h"
 #include "SS5PlayerTypes.h"
@@ -42,7 +42,7 @@ void State::init(){
 
 
 bool State::operator==(const State &s) const{
-	//memo:À‘•‚Í‹ŒCustomSprite‚ÌsetState‚ğQl‚É‚µ‚½B‚¢‚­‚Â‚©‚Ì€–Ú‚ğ’ú‚ß‚Ä‚½‚Ì‚ÅA‚Ğ‚Æ‚Ü‚¸‚»‚ê‚É‡‚¸‚é
+	//memo:å®Ÿè£…ã¯æ—§CustomSpriteã®setStateã‚’å‚è€ƒã«ã—ãŸã€‚ã„ãã¤ã‹ã®é …ç›®ã‚’è«¦ã‚ã¦ãŸã®ã§ã€ã²ã¨ã¾ãšãã‚Œã«é †ãšã‚‹
 	return (
 		m_flags == s.m_flags
 		&& m_cellIndex == s.m_cellIndex
@@ -81,7 +81,7 @@ bool State::operator!=(const State &s) const{
 
 
 
-//SS5Player.cpp::setFrame()“à‚Ìˆ—‚ğ‚²‚Á‚»‚è‚Á‚Ä‚«‚½
+//SS5Player.cpp::setFrame()å†…ã®å‡¦ç†ã‚’ã”ã£ãã‚ŠæŒã£ã¦ããŸ
 void State::readData(DataArrayReader &reader, const AnimationInitialData *init)
 {
 	int flags_       = reader.readU32();
@@ -89,8 +89,8 @@ void State::readData(DataArrayReader &reader, const AnimationInitialData *init)
 	m_flags      = flags_;
 	m_cellIndex  = flags_ & PART_FLAG_CELL_INDEX ? reader.readS16() : init->cellIndex;
 	m_x          = flags_ & PART_FLAG_POSITION_X ? (float)reader.readS16() : (float)init->positionX;
-	m_y          = flags_ & PART_FLAG_POSITION_Y ? (float)-reader.readS16() : (float)-init->positionY;	//ã‚ªƒ}ƒCƒiƒX‚È‚Ì‚Å”½“]‚³‚¹‚é
-	m_z          = flags_ & PART_FLAG_POSITION_Z ? (float)reader.readS16() : (float)init->positionZ;	//ã‚ªƒ}ƒCƒiƒX‚È‚Ì‚Å”½“]‚³‚¹‚é
+	m_y          = flags_ & PART_FLAG_POSITION_Y ? (float)-reader.readS16() : (float)-init->positionY;	//ä¸ŠãŒãƒã‚¤ãƒŠã‚¹ãªã®ã§åè»¢ã•ã›ã‚‹
+	m_z          = flags_ & PART_FLAG_POSITION_Z ? (float)reader.readS16() : (float)init->positionZ;	//ä¸ŠãŒãƒã‚¤ãƒŠã‚¹ãªã®ã§åè»¢ã•ã›ã‚‹
 	m_anchorX    = flags_ & PART_FLAG_ANCHOR_X ? reader.readFloat() : init->anchorX;
 	m_anchorY    = flags_ & PART_FLAG_ANCHOR_Y ? reader.readFloat() : init->anchorY;
 	m_rotationX  = flags_ & PART_FLAG_ROTATIONX ? -reader.readFloat() : -init->rotationX;
@@ -111,8 +111,8 @@ void State::readData(DataArrayReader &reader, const AnimationInitialData *init)
 	m_flipY       = static_cast<bool>(flags_ & PART_FLAG_FLIP_V);
 	m_isVisibled = !(flags_ & PART_FLAG_INVISIBLE);
 
-	//ŒÅ’è­”‚ğ­”‚Ö–ß‚·
-	static const float DOT = 10.0f;			/// ŒÅ’è­”‚Ì’è” 10=1ƒhƒbƒg
+	//å›ºå®šå°‘æ•°ã‚’å°‘æ•°ã¸æˆ»ã™
+	static const float DOT = 10.0f;			/// å›ºå®šå°‘æ•°ã®å®šæ•° 10=1ãƒ‰ãƒƒãƒˆ
 	m_x /= DOT;
 	m_y /= DOT;
 	m_z /= DOT;
@@ -120,7 +120,7 @@ void State::readData(DataArrayReader &reader, const AnimationInitialData *init)
 
 
 
-//uvŒvZ
+//uvè¨ˆç®—
 void State::uvCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, int imgWidth, int imgHeight) const
 {
 	float left, right, top, bottom;
@@ -135,7 +135,7 @@ void State::uvCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, int imgWidt
 	q->tr.texCoords = {right, top};
 
 
-	//uvƒXƒNƒ[ƒ‹	//flagƒ`ƒFƒbƒN‚·‚éH
+	//uvã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«	//flagãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼Ÿ
 	{
 		SSTex2F uvMove(m_uv_move_X, m_uv_move_Y);
 		q->uvForeach( [&uvMove](SSTex2F &uv){
@@ -144,24 +144,24 @@ void State::uvCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, int imgWidt
 	}
 
 
-	//ŒvZ—p‚Éuv’†S‚ğ‹‚ß‚Ä‚¨‚­
-	//memo:‰ñ“]EƒXƒP[ƒ‹‚Å’†‰›‚Ö‚Ì–ß‚µˆ—‚ª‘½”­‚·‚é‚Ì‚Åƒ{ƒgƒ‹ƒlƒbƒN‚É‚È‚é‚æ‚¤‚È‚çÅ‰‚©‚ç’†S‡‚í‚¹‚ÅŒvZ‚µ‚ÄÅŒã‚ÉƒIƒtƒZƒbƒg‚ğ‘«‚·‚æ‚¤‚É‚·‚é‚Ì‚ª‚¢‚¢‚©‚à‚µ‚ê‚È‚¢
+	//è¨ˆç®—ç”¨ã«uvä¸­å¿ƒã‚’æ±‚ã‚ã¦ãŠã
+	//memo:å›è»¢ãƒ»ã‚¹ã‚±ãƒ¼ãƒ«ã§ä¸­å¤®ã¸ã®æˆ»ã—å‡¦ç†ãŒå¤šç™ºã™ã‚‹ã®ã§ãƒœãƒˆãƒ«ãƒãƒƒã‚¯ã«ãªã‚‹ã‚ˆã†ãªã‚‰æœ€åˆã‹ã‚‰ä¸­å¿ƒåˆã‚ã›ã§è¨ˆç®—ã—ã¦æœ€å¾Œã«ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¶³ã™ã‚ˆã†ã«ã™ã‚‹ã®ãŒã„ã„ã‹ã‚‚ã—ã‚Œãªã„
 	SSTex2F uvCenter = (q->br.texCoords + q->tl.texCoords) / 2.0f;
 
 
-	//UV‰ñ“]
+	//UVå›è»¢
 	if (m_flags & PART_FLAG_UV_ROTATION){
-		//’¸“_ˆÊ’u‚ğ‰ñ“]‚³‚¹‚é
+		//é ‚ç‚¹ä½ç½®ã‚’å›è»¢ã•ã›ã‚‹
 		float rotateRadian = DegreeToRadian(m_uv_rotation);
 		q->uvForeach([&](SSTex2F &uv){
 			uv.rotate(rotateRadian, uvCenter);
 		});
 	}
 
-	//UVƒXƒP[ƒ‹
+	//UVã‚¹ã‚±ãƒ¼ãƒ«
 	if((m_flags & PART_FLAG_U_SCALE) || (m_flags & PART_FLAG_V_SCALE)){
 		q->uvForeach([&](SSTex2F &uv){
-			//’†S‚ğŠî€‚Æ‚µ‚ÄŠg‘åk¬‚³‚¹‚é
+			//ä¸­å¿ƒã‚’åŸºæº–ã¨ã—ã¦æ‹¡å¤§ç¸®å°ã•ã›ã‚‹
 			uv -= uvCenter;
 			uv.u *= m_uv_scale_X;
 			uv.v *= m_uv_scale_Y;
@@ -170,12 +170,12 @@ void State::uvCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, int imgWidt
 	}
 
 	
-	////UV”½“]
-	//if (m_flags & PART_FLAG_FLIP_H){	//¶‰E”½“]‚ğs‚¤ê‡‚Ílr“ü‚ê‘Ö‚¦
+	////UVåè»¢
+	//if (m_flags & PART_FLAG_FLIP_H){	//å·¦å³åè»¢ã‚’è¡Œã†å ´åˆã¯lrå…¥ã‚Œæ›¿ãˆ
 	//	std::swap(q->tr.texCoords.u, q->tl.texCoords.u);
 	//	std::swap(q->br.texCoords.u, q->bl.texCoords.u);
 	//}
-	//if (m_flags & PART_FLAG_FLIP_H){	//ã‰º”½“]‚ğs‚¤ê‡‚Ítb“ü‚ê‘Ö‚¦
+	//if (m_flags & PART_FLAG_FLIP_H){	//ä¸Šä¸‹åè»¢ã‚’è¡Œã†å ´åˆã¯tbå…¥ã‚Œæ›¿ãˆ
 	//	std::swap(q->tr.texCoords.v, q->br.texCoords.v);
 	//	std::swap(q->tl.texCoords.v, q->bl.texCoords.v);
 	//}
@@ -183,23 +183,23 @@ void State::uvCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, int imgWidt
 
 
 
-//’¸“_ŒvZ
+//é ‚ç‚¹è¨ˆç®—
 void State::vertexCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, const SSQuad3 &vertexTransform) const
 {
-	//memo:scale‚Æ‚©rotate‚Æ‚©‚ÍŒã‚Åmatrix‚ğŠ|‚¯‚Ä”½‰f‚³‚¹‚éB¡‚Í’†S(0,0)Šî€‚Ì‹éŒ`(+’¸“_•Ï‰»)‚ğì‚é‚¾‚¯
+	//memo:scaleã¨ã‹rotateã¨ã‹ã¯å¾Œã§matrixã‚’æ›ã‘ã¦åæ˜ ã•ã›ã‚‹ã€‚ä»Šã¯ä¸­å¿ƒ(0,0)åŸºæº–ã®çŸ©å½¢(+é ‚ç‚¹å¤‰åŒ–)ã‚’ä½œã‚‹ã ã‘
 
-	//‚Ğ‚Æ‚Ü‚¸rect‚ğƒx[ƒX‚É‹éŒ`‚ğƒZƒbƒg‚·‚é
+	//ã²ã¨ã¾ãšrectã‚’ãƒ™ãƒ¼ã‚¹ã«çŸ©å½¢ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	float width = cellRect.size.width;
 	float height = cellRect.size.height;
 	q->bl.vertices = SSVertex3F(0, 0, 0);
 	q->br.vertices = SSVertex3F(width, 0, 0);
 	q->tl.vertices = SSVertex3F(0, height, 0);
-	q->tr.vertices = SSVertex3F(width, height, 0);  //y‚ªã•ûŒü+‚È‚Ì‚ÅA¶‰ºŠî€‚Ì‹éŒ`‚É‚È‚Á‚Ä‚é‚ç‚µ‚¢
+	q->tr.vertices = SSVertex3F(width, height, 0);  //yãŒä¸Šæ–¹å‘+ãªã®ã§ã€å·¦ä¸‹åŸºæº–ã®çŸ©å½¢ã«ãªã£ã¦ã‚‹ã‚‰ã—ã„
 			
-	//ƒTƒCƒY•Ï‰»‚µ‚Ä‚¢‚é‚È‚çA‚»‚¿‚ç‚Éİ’è‚ğ‡‚í‚¹‚é
-	//•’Ê‚Íscale‚Åw’è‚³‚ê‚é‚Ì‚ÅA‚±‚Ìƒtƒ‰ƒO‚ªON‚É‚È‚é‚Ì‚ÍƒŒƒAƒP[ƒX?
-	//Ú‚µ‚­‚Í http://www.webtech.co.jp/help/ja/spritestudio/window/attributewindow/
-	//uƒAƒ“ƒJ[‹@”\‚ğ‚Â“Áê‚Èƒp[ƒcv‚É‚Â‚¢‚Ä‚Ì€–Ú‚ğQÆ
+	//ã‚µã‚¤ã‚ºå¤‰åŒ–ã—ã¦ã„ã‚‹ãªã‚‰ã€ãã¡ã‚‰ã«è¨­å®šã‚’åˆã‚ã›ã‚‹
+	//æ™®é€šã¯scaleã§æŒ‡å®šã•ã‚Œã‚‹ã®ã§ã€ã“ã®ãƒ•ãƒ©ã‚°ãŒONã«ãªã‚‹ã®ã¯ãƒ¬ã‚¢ã‚±ãƒ¼ã‚¹?
+	//è©³ã—ãã¯ http://www.webtech.co.jp/help/ja/spritestudio/window/attributewindow/
+	//ã€Œã‚¢ãƒ³ã‚«ãƒ¼æ©Ÿèƒ½ã‚’æŒã¤ç‰¹æ®Šãªãƒ‘ãƒ¼ãƒ„ã€ã«ã¤ã„ã¦ã®é …ç›®ã‚’å‚ç…§
 	if(m_flags & PART_FLAG_SIZE_X){
 		q->br.vertices.x = m_size_X;
 		q->tr.vertices.x = m_size_X;
@@ -209,12 +209,12 @@ void State::vertexCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, const S
 		q->tr.vertices.y = m_size_Y;
 	}
 
-	//memo:À•WŒn‚ªyã•ûŒü‚ª-‚É‚È‚é‚æ‚¤‚É’²®‚µ‚Ä‚Ü‚·
+	//memo:åº§æ¨™ç³»ãŒyä¸Šæ–¹å‘ãŒ-ã«ãªã‚‹ã‚ˆã†ã«èª¿æ•´ã—ã¦ã¾ã™
 	std::swap(q->tl.vertices.y, q->bl.vertices.y);
 	std::swap(q->tr.vertices.y, q->br.vertices.y);
 
 
-	////’†S‚ªÀ•WŠî€‚È‚Ì‚ÅƒIƒtƒZƒbƒg‚ğ’Ç‰Á
+	////ä¸­å¿ƒãŒåº§æ¨™åŸºæº–ãªã®ã§ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¿½åŠ 
 	SSVertex3F center = (q->bl.vertices + q->tr.vertices) / 2;
 	q->bl.vertices -= center;
 	q->br.vertices -= center;
@@ -222,7 +222,7 @@ void State::vertexCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, const S
 	q->tr.vertices -= center;
 
 	
-	// ’¸“_•ÏŒ`‚ÌƒIƒtƒZƒbƒg’l‚ğ”½‰f
+	// é ‚ç‚¹å¤‰å½¢ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’åæ˜ 
 	if (m_flags & PART_FLAG_VERTEX_TRANSFORM){
 		*q += vertexTransform;
 	}
@@ -235,7 +235,7 @@ void State::matrixCompute(SSMatrix *matrix) const
 {
 	SSMatrix tmp;
 	SSPoint flipScale(
-		(m_flipX)? -1:1,		//”½“]‚¾‚Á‚½‚ç-1, ’Êí‚¾‚Á‚½‚ç1
+		(m_flipX)? -1:1,		//åè»¢ã ã£ãŸã‚‰-1, é€šå¸¸ã ã£ãŸã‚‰1
 		(m_flipY)? -1:1		//
 	);
 

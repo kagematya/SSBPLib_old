@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <memory>
 #include <string.h>
@@ -11,16 +11,16 @@ class SS5Player;
 
 /**
  * CustomSprite
- * Œ»ƒtƒŒ[ƒ€‚Å‚Ìƒf[ƒ^‚ğParts–ˆ‚É‚±‚±‚É“ü‚ê‚é
+ * ç¾ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã®ãƒ‡ãƒ¼ã‚¿ã‚’Partsæ¯ã«ã“ã“ã«å…¥ã‚Œã‚‹
  */
 class CustomSprite{
 public:
-	SSMatrix			m_mat;			//¡‚Ì‚Æ‚±‚ëAcell‚ÌworldMatrix‚Á‚ÄŠ´‚¶‚¾B
+	SSMatrix			m_mat;			//ä»Šã®ã¨ã“ã‚ã€cellã®worldMatrixã£ã¦æ„Ÿã˜ã ã€‚
 	State				m_state;
 	bool				m_isStateChanged;
 	float				m_liveFrame;
 	CustomSprite*		m_parent;
-	std::shared_ptr<ss::SS5Player> m_ssplayer;	//customsprite‚ÍƒRƒs[‰Â”\‚É‚µ‚Æ‚«‚½‚¢‚Ì‚Åshared_ptr
+	std::shared_ptr<ss::SS5Player> m_ssplayer;	//customspriteã¯ã‚³ãƒ”ãƒ¼å¯èƒ½ã«ã—ã¨ããŸã„ã®ã§shared_ptr
 	
 	void initialize();
 	void finalize();
@@ -35,10 +35,10 @@ public:
 	void setState(const State& state);
 
 
-	SSV3F_C4B_T2F_Quad m_quad;		/// ’¸“_ƒf[ƒ^AÀ•WAƒJƒ‰[’lAUV‚ªŠÜ‚Ü‚ê‚éi’¸“_•ÏŒ`AƒTƒCƒYXYAUVˆÚ“®XYAUVƒXƒP[ƒ‹AUV‰ñ“]A”½“]‚ª”½‰fÏj
-	TextureID m_texture;			/// ƒZƒ‹‚É‘Î‰‚µ‚½ƒeƒNƒXƒ`ƒƒ”Ô†iƒQ[ƒ€‘¤‚ÅŠÇ—‚µ‚Ä‚¢‚é”Ô†‚ğİ’è‚·‚éj
-	SSRect m_rect;					/// ƒZƒ‹‚É‘Î‰‚µ‚½ƒeƒNƒXƒ`ƒƒ“à‚Ì•\¦—ÌˆæiŠJnÀ•WA•‚‚³j
-	int m_blendfunc;				/// ƒp[ƒc‚Éİ’è‚³‚ê‚½ƒuƒŒƒ“ƒh•û–@
+	SSV3F_C4B_T2F_Quad m_quad;		/// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã€åº§æ¨™ã€ã‚«ãƒ©ãƒ¼å€¤ã€UVãŒå«ã¾ã‚Œã‚‹ï¼ˆé ‚ç‚¹å¤‰å½¢ã€ã‚µã‚¤ã‚ºXYã€UVç§»å‹•XYã€UVã‚¹ã‚±ãƒ¼ãƒ«ã€UVå›è»¢ã€åè»¢ãŒåæ˜ æ¸ˆï¼‰
+	TextureID m_texture;			/// ã‚»ãƒ«ã«å¯¾å¿œã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ç•ªå·ï¼ˆã‚²ãƒ¼ãƒ å´ã§ç®¡ç†ã—ã¦ã„ã‚‹ç•ªå·ã‚’è¨­å®šã™ã‚‹ï¼‰
+	SSRect m_rect;					/// ã‚»ãƒ«ã«å¯¾å¿œã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£å†…ã®è¡¨ç¤ºé ˜åŸŸï¼ˆé–‹å§‹åº§æ¨™ã€å¹…é«˜ã•ï¼‰
+	int m_blendfunc;				/// ãƒ‘ãƒ¼ãƒ„ã«è¨­å®šã•ã‚ŒãŸãƒ–ãƒ¬ãƒ³ãƒ‰æ–¹æ³•
 };
 
 

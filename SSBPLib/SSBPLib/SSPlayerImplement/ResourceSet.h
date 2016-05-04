@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include <vector>
@@ -11,22 +11,22 @@
 namespace ss{
 
 
-/** ƒŠƒ\[ƒX‚Æ‚È‚éƒf[ƒ^‚ÆA‚»‚Ì\‘¢‚Ö‚ÌƒAƒNƒZƒT‚ª“ü‚Á‚Ä‚Ü‚· */
+/** ãƒªã‚½ãƒ¼ã‚¹ã¨ãªã‚‹ãƒ‡ãƒ¼ã‚¿ã¨ã€ãã®æ§‹é€ ã¸ã®ã‚¢ã‚¯ã‚»ã‚µãŒå…¥ã£ã¦ã¾ã™ */
 class ResourceSet{
 private:
-	static const ss_u32 DATA_ID = 0x42505353;	//ƒf[ƒ^‚Ìƒ`ƒFƒbƒN’l
-	static const ss_u32 DATA_VERSION = 1;		//ƒf[ƒ^‚Ìƒ`ƒFƒbƒN’l
+	static const ss_u32 DATA_ID = 0x42505353;	//ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚§ãƒƒã‚¯å€¤
+	static const ss_u32 DATA_VERSION = 1;		//ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚§ãƒƒã‚¯å€¤
 
-	std::vector<char> m_src;	//ƒf[ƒ^‚ÌÀ‘Ì
+	std::vector<char> m_src;	//ãƒ‡ãƒ¼ã‚¿ã®å®Ÿä½“
 	
 public:
-	const ProjectData* m_data;	//ƒf[ƒ^‚ğw‚·‚¾‚¯
-	CellCache* m_cellCache;		//cellü‚è‚Ì\‘¢‚Ö‚ÌƒAƒNƒZƒT
-	AnimeCache* m_animeCache;	//animü‚è‚Ì\‘¢‚Ö‚ÌƒAƒNƒZƒT
+	const ProjectData* m_data;	//ãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡ã™ã ã‘
+	CellCache* m_cellCache;		//cellå‘¨ã‚Šã®æ§‹é€ ã¸ã®ã‚¢ã‚¯ã‚»ã‚µ
+	AnimeCache* m_animeCache;	//animå‘¨ã‚Šã®æ§‹é€ ã¸ã®ã‚¢ã‚¯ã‚»ã‚µ
 
-	/** data_‚ÍƒRƒs[‚³‚ê‚Ü‚· */
+	/** data_ã¯ã‚³ãƒ”ãƒ¼ã•ã‚Œã¾ã™ */
 	ResourceSet(const char *data_, size_t dataSize, const std::string &imageBaseDir)
-		: m_src(data_, data_+dataSize)	//ƒRƒs[
+		: m_src(data_, data_+dataSize)	//ã‚³ãƒ”ãƒ¼
 		, m_data(nullptr)
 		, m_cellCache(nullptr)
 		, m_animeCache(nullptr)

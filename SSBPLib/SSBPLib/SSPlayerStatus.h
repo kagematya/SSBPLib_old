@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-//SS5Player.h‚É‚ ‚Á‚½’è‹`‚ğˆÚ‚µ‚½
+//SS5Player.hã«ã‚ã£ãŸå®šç¾©ã‚’ç§»ã—ãŸ
 #include <string>
 #include "common/SSRect.h"
 #include "common/ssplayer_matrix.h"
@@ -21,50 +21,50 @@ struct LabelData{
 
 
 /**
- * ƒp[ƒc‚Ìî•ñ‚ğŠi”[‚µ‚Ü‚·BState‚Ì“à—e‚ğ‚à‚Æ‚É•`‰æˆ—‚ğì¬‚µ‚Ä‚­‚¾‚³‚¢B
+ * ãƒ‘ãƒ¼ãƒ„ã®æƒ…å ±ã‚’æ ¼ç´ã—ã¾ã™ã€‚Stateã®å†…å®¹ã‚’ã‚‚ã¨ã«æç”»å‡¦ç†ã‚’ä½œæˆã—ã¦ãã ã•ã„ã€‚
  */
 struct State {
-	int m_flags;					/// ‚±‚ÌƒtƒŒ[ƒ€‚ÅXV‚ªs‚í‚ê‚éƒXƒe[ƒ^ƒX‚Ìƒtƒ‰ƒO
-	int m_cellIndex;				/// ƒp[ƒc‚ÉŠ„‚è“–‚Ä‚ç‚ê‚½ƒZƒ‹‚Ì”Ô†
-	float m_x;						/// SS5ƒAƒgƒŠƒrƒ…[ƒgFXÀ•W
-	float m_y;						/// SS5ƒAƒgƒŠƒrƒ…[ƒgFYÀ•W
-	float m_z;						/// SS5ƒAƒgƒŠƒrƒ…[ƒgFZÀ•W
-	float m_anchorX;				/// Œ´“_XƒIƒtƒZƒbƒg{ƒZƒ‹‚Éİ’è‚³‚ê‚½Œ´“_ƒIƒtƒZƒbƒgX
-	float m_anchorY;				/// Œ´“_YƒIƒtƒZƒbƒg{ƒZƒ‹‚Éİ’è‚³‚ê‚½Œ´“_ƒIƒtƒZƒbƒgY
-	float m_rotationX;				/// X‰ñ“]ieqŠÖŒWŒvZÏj
-	float m_rotationY;				/// Y‰ñ“]ieqŠÖŒWŒvZÏj
-	float m_rotationZ;				/// Z‰ñ“]ieqŠÖŒWŒvZÏj
-	float m_scaleX;					/// XƒXƒP[ƒ‹ieqŠÖŒWŒvZÏj
-	float m_scaleY;					/// YƒXƒP[ƒ‹ieqŠÖŒWŒvZÏj
-	int   m_opacity;				/// •s“§–¾“xi0`255jieqŠÖŒWŒvZÏj
-	float m_size_X;					/// SS5ƒAƒgƒŠƒrƒ…[ƒgFXƒTƒCƒY
-	float m_size_Y;					/// SS5ƒAƒgƒŠƒrƒ…[ƒgFXƒTƒCƒY
-	float m_uv_move_X;				/// SS5ƒAƒgƒŠƒrƒ…[ƒgFUV XˆÚ“®
-	float m_uv_move_Y;				/// SS5ƒAƒgƒŠƒrƒ…[ƒgFUV YˆÚ“®
-	float m_uv_rotation;			/// SS5ƒAƒgƒŠƒrƒ…[ƒgFUV ‰ñ“]
-	float m_uv_scale_X;				/// SS5ƒAƒgƒŠƒrƒ…[ƒgFUV XƒXƒP[ƒ‹
-	float m_uv_scale_Y;				/// SS5ƒAƒgƒŠƒrƒ…[ƒgFUV YƒXƒP[ƒ‹
-	float m_boundingRadius;			/// SS5ƒAƒgƒŠƒrƒ…[ƒgF“–‚½‚è”¼Œa
-	bool m_flipX;					/// ‰¡”½“]ieqŠÖŒWŒvZÏj
-	bool m_flipY;					/// c”½“]ieqŠÖŒWŒvZÏj
-	bool m_isVisibled;				/// ”ñ•\¦ieqŠÖŒWŒvZÏj
+	int m_flags;					/// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§æ›´æ–°ãŒè¡Œã‚ã‚Œã‚‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒ•ãƒ©ã‚°
+	int m_cellIndex;				/// ãƒ‘ãƒ¼ãƒ„ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸã‚»ãƒ«ã®ç•ªå·
+	float m_x;						/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šXåº§æ¨™
+	float m_y;						/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šYåº§æ¨™
+	float m_z;						/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šZåº§æ¨™
+	float m_anchorX;				/// åŸç‚¹Xã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‹ã‚»ãƒ«ã«è¨­å®šã•ã‚ŒãŸåŸç‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆX
+	float m_anchorY;				/// åŸç‚¹Yã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‹ã‚»ãƒ«ã«è¨­å®šã•ã‚ŒãŸåŸç‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆY
+	float m_rotationX;				/// Xå›è»¢ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_rotationY;				/// Yå›è»¢ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_rotationZ;				/// Zå›è»¢ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_scaleX;					/// Xã‚¹ã‚±ãƒ¼ãƒ«ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_scaleY;					/// Yã‚¹ã‚±ãƒ¼ãƒ«ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	int   m_opacity;				/// ä¸é€æ˜åº¦ï¼ˆ0ï½255ï¼‰ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_size_X;					/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šXã‚µã‚¤ã‚º
+	float m_size_Y;					/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šXã‚µã‚¤ã‚º
+	float m_uv_move_X;				/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šUV Xç§»å‹•
+	float m_uv_move_Y;				/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šUV Yç§»å‹•
+	float m_uv_rotation;			/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šUV å›è»¢
+	float m_uv_scale_X;				/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šUV Xã‚¹ã‚±ãƒ¼ãƒ«
+	float m_uv_scale_Y;				/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šUV Yã‚¹ã‚±ãƒ¼ãƒ«
+	float m_boundingRadius;			/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šå½“ãŸã‚ŠåŠå¾„
+	bool m_flipX;					/// æ¨ªåè»¢ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	bool m_flipY;					/// ç¸¦åè»¢ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	bool m_isVisibled;				/// éè¡¨ç¤ºï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
 
-	int m_colorBlendFunc;			/// SS5ƒAƒgƒŠƒrƒ…[ƒgFƒJƒ‰[ƒuƒŒƒ“ƒh‚ÌƒuƒŒƒ“ƒh•û–@
-	int m_colorBlendType;			/// SS5ƒAƒgƒŠƒrƒ…[ƒgFƒJƒ‰[ƒuƒŒƒ“ƒh‚Ì’PF‚©’¸“_ƒJƒ‰[‚©B
+	int m_colorBlendFunc;			/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šã‚«ãƒ©ãƒ¼ãƒ–ãƒ¬ãƒ³ãƒ‰ã®ãƒ–ãƒ¬ãƒ³ãƒ‰æ–¹æ³•
+	int m_colorBlendType;			/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šã‚«ãƒ©ãƒ¼ãƒ–ãƒ¬ãƒ³ãƒ‰ã®å˜è‰²ã‹é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‹ã€‚
 	
 
-	SSMatrix m_mat;					/// ƒp[ƒc‚ÌˆÊ’u‚ğZo‚·‚é‚½‚ß‚Ìƒ}ƒgƒŠƒNƒXieqŠÖŒWŒvZÏj
+	SSMatrix m_mat;					/// ãƒ‘ãƒ¼ãƒ„ã®ä½ç½®ã‚’ç®—å‡ºã™ã‚‹ãŸã‚ã®ãƒãƒˆãƒªã‚¯ã‚¹ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
 	
 	
-	//reader‚ğ‰î‚µ‚Äƒf[ƒ^‚ğ“Ç‚İæ‚é
+	//readerã‚’ä»‹ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å–ã‚‹
 	void readData(DataArrayReader &reader, const AnimationInitialData *init);
 	
 
-	//Œ»İ‚ÌState‚Ìî•ñ‚ğŒ³‚Éuv‚ğŒvZ‚·‚é
+	//ç¾åœ¨ã®Stateã®æƒ…å ±ã‚’å…ƒã«uvã‚’è¨ˆç®—ã™ã‚‹
 	void uvCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, int imgWidth, int imgHeight) const;
-	//Œ»İ‚ÌState‚Ìî•ñ‚ğŒ³‚Éverex‚ğŒvZ‚·‚é
+	//ç¾åœ¨ã®Stateã®æƒ…å ±ã‚’å…ƒã«verexã‚’è¨ˆç®—ã™ã‚‹
 	void vertexCompute(SSV3F_C4B_T2F_Quad *q, const SSRect &cellRect, const SSQuad3 &vertexTransform) const;
-	//Œ»İ‚ÌState‚Ìî•ñ‚ğŒ³‚Ématrix‚ğŒvZ‚·‚éBsetIdentity‚©‚çn‚ß‚Ü‚·
+	//ç¾åœ¨ã®Stateã®æƒ…å ±ã‚’å…ƒã«matrixã‚’è¨ˆç®—ã™ã‚‹ã€‚setIdentityã‹ã‚‰å§‹ã‚ã¾ã™
 	void matrixCompute(SSMatrix *matrix) const;
 
 	void init();
@@ -77,76 +77,76 @@ struct State {
 
 /**
  * ResluteState
- * ƒQ[ƒ€‘¤‚É•Ô‚·ƒp[ƒcƒXƒe[ƒ^ƒXB
- * •K—v‚É‰‚¶‚ÄƒJƒXƒ^ƒ}ƒCƒY‚µ‚Ä‚­‚¾‚³‚¢B
+ * ã‚²ãƒ¼ãƒ å´ã«è¿”ã™ãƒ‘ãƒ¼ãƒ„ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã€‚
+ * å¿…è¦ã«å¿œã˜ã¦ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã—ã¦ãã ã•ã„ã€‚
  */
 struct ResluteState
 {
-	float m_x;						/// XÀ•WieqŠÖŒWŒvZÏj
-	float m_y;						/// YÀ•WieqŠÖŒWŒvZÏj
-	float m_z;						/// ZÀ•WieqŠÖŒWŒvZÏj
-	float m_rotationX;				/// X‰ñ“]ieqŠÖŒWŒvZÏj
-	float m_rotationY;				/// Y‰ñ“]ieqŠÖŒWŒvZÏj
-	float m_rotationZ;				/// Z‰ñ“]ieqŠÖŒWŒvZÏj
-	float m_scaleX;					/// XƒXƒP[ƒ‹ieqŠÖŒWŒvZÏj
-	float m_scaleY;					/// YƒXƒP[ƒ‹ieqŠÖŒWŒvZÏj
+	float m_x;						/// Xåº§æ¨™ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_y;						/// Yåº§æ¨™ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_z;						/// Zåº§æ¨™ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_rotationX;				/// Xå›è»¢ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_rotationY;				/// Yå›è»¢ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_rotationZ;				/// Zå›è»¢ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_scaleX;					/// Xã‚¹ã‚±ãƒ¼ãƒ«ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_scaleY;					/// Yã‚¹ã‚±ãƒ¼ãƒ«ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
 	
-	int m_opacity;					/// •s“§–¾“xi0`255jieqŠÖŒWŒvZÏj
-	float m_boundingRadius;			/// SS5ƒAƒgƒŠƒrƒ…[ƒgF“–‚½‚è”¼Œa
-	bool m_isVisibled;				/// ”ñ•\¦ieqŠÖŒWŒvZÏj
+	int m_opacity;					/// ä¸é€æ˜åº¦ï¼ˆ0ï½255ï¼‰ï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
+	float m_boundingRadius;			/// SS5ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼šå½“ãŸã‚ŠåŠå¾„
+	bool m_isVisibled;				/// éè¡¨ç¤ºï¼ˆè¦ªå­é–¢ä¿‚è¨ˆç®—æ¸ˆï¼‰
 
-	int	m_part_type;				// ƒp[ƒcí•Ê
-	int	m_part_boundsType;			// “–‚½‚è”»’èí—Ş
+	int	m_part_type;				// ãƒ‘ãƒ¼ãƒ„ç¨®åˆ¥
+	int	m_part_boundsType;			// å½“ãŸã‚Šåˆ¤å®šç¨®é¡
 	int	m_part_alphaBlendType;		// BlendType
 };
 
 /**
- * Ä¶‚·‚éƒtƒŒ[ƒ€‚ÉŠÜ‚Ü‚ê‚éƒp[ƒcƒf[ƒ^‚Ìƒtƒ‰ƒO
- *  ’l‡‚Éread‚·‚ê‚Î‚¢‚¢‚í‚¯‚Å‚à‚È‚¢‚ç‚µ‚¢EEE
- *  ƒRƒ“ƒo[ƒ^‚Æ‚Ì‘Î‰‚ğŒ©‚È‚ª‚çˆ—‚ğ‘‚¢‚Ä‚­‚¾‚³‚¢
+ * å†ç”Ÿã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã«å«ã¾ã‚Œã‚‹ãƒ‘ãƒ¼ãƒ„ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ãƒ©ã‚°
+ *  å€¤é †ã«readã™ã‚Œã°ã„ã„ã‚ã‘ã§ã‚‚ãªã„ã‚‰ã—ã„ãƒ»ãƒ»ãƒ»
+ *  ã‚³ãƒ³ãƒãƒ¼ã‚¿ã¨ã®å¯¾å¿œã‚’è¦‹ãªãŒã‚‰å‡¦ç†ã‚’æ›¸ã„ã¦ãã ã•ã„
  */
 enum {
-	PART_FLAG_INVISIBLE			= 1 << 0,		/// ”ñ•\¦
-	PART_FLAG_FLIP_H			= 1 << 1,		/// ‰¡”½“]
-	PART_FLAG_FLIP_V			= 1 << 2,		/// c”½“]
+	PART_FLAG_INVISIBLE			= 1 << 0,		/// éè¡¨ç¤º
+	PART_FLAG_FLIP_H			= 1 << 1,		/// æ¨ªåè»¢
+	PART_FLAG_FLIP_V			= 1 << 2,		/// ç¸¦åè»¢
 
 	// optional parameter flags
-	PART_FLAG_CELL_INDEX		= 1 << 3,		/// ƒZƒ‹”Ô†
-	PART_FLAG_POSITION_X		= 1 << 4,		/// XÀ•W
-	PART_FLAG_POSITION_Y		= 1 << 5,		/// YÀ•W
-	PART_FLAG_POSITION_Z		= 1 << 6,		/// ZÀ•W
-	PART_FLAG_ANCHOR_X			= 1 << 7,		/// Œ´“_ƒIƒtƒZƒbƒgX
-	PART_FLAG_ANCHOR_Y			= 1 << 8,		/// Œ´“_ƒIƒtƒZƒbƒgY
-	PART_FLAG_ROTATIONX			= 1 << 9,		/// X‰ñ“]
-	PART_FLAG_ROTATIONY			= 1 << 10,		/// Y‰ñ“]
-	PART_FLAG_ROTATIONZ			= 1 << 11,		/// Z‰ñ“]
-	PART_FLAG_SCALE_X			= 1 << 12,		/// ƒXƒP[ƒ‹X
-	PART_FLAG_SCALE_Y			= 1 << 13,		/// ƒXƒP[ƒ‹Y
-	PART_FLAG_OPACITY			= 1 << 14,		/// •s“§–¾“x
-	PART_FLAG_COLOR_BLEND		= 1 << 15,		/// ƒJƒ‰[ƒuƒŒƒ“ƒh
-	PART_FLAG_VERTEX_TRANSFORM	= 1 << 16,		/// ’¸“_•ÏŒ`
+	PART_FLAG_CELL_INDEX		= 1 << 3,		/// ã‚»ãƒ«ç•ªå·
+	PART_FLAG_POSITION_X		= 1 << 4,		/// Xåº§æ¨™
+	PART_FLAG_POSITION_Y		= 1 << 5,		/// Yåº§æ¨™
+	PART_FLAG_POSITION_Z		= 1 << 6,		/// Zåº§æ¨™
+	PART_FLAG_ANCHOR_X			= 1 << 7,		/// åŸç‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆX
+	PART_FLAG_ANCHOR_Y			= 1 << 8,		/// åŸç‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆY
+	PART_FLAG_ROTATIONX			= 1 << 9,		/// Xå›è»¢
+	PART_FLAG_ROTATIONY			= 1 << 10,		/// Yå›è»¢
+	PART_FLAG_ROTATIONZ			= 1 << 11,		/// Zå›è»¢
+	PART_FLAG_SCALE_X			= 1 << 12,		/// ã‚¹ã‚±ãƒ¼ãƒ«X
+	PART_FLAG_SCALE_Y			= 1 << 13,		/// ã‚¹ã‚±ãƒ¼ãƒ«Y
+	PART_FLAG_OPACITY			= 1 << 14,		/// ä¸é€æ˜åº¦
+	PART_FLAG_COLOR_BLEND		= 1 << 15,		/// ã‚«ãƒ©ãƒ¼ãƒ–ãƒ¬ãƒ³ãƒ‰
+	PART_FLAG_VERTEX_TRANSFORM	= 1 << 16,		/// é ‚ç‚¹å¤‰å½¢
 
-	PART_FLAG_SIZE_X			= 1 << 17,		/// ƒTƒCƒYX
-	PART_FLAG_SIZE_Y			= 1 << 18,		/// ƒTƒCƒYY
+	PART_FLAG_SIZE_X			= 1 << 17,		/// ã‚µã‚¤ã‚ºX
+	PART_FLAG_SIZE_Y			= 1 << 18,		/// ã‚µã‚¤ã‚ºY
 
-	PART_FLAG_U_MOVE			= 1 << 19,		/// UVˆÚ“®X
-	PART_FLAG_V_MOVE			= 1 << 20,		/// UVˆÚ“®Y
-	PART_FLAG_UV_ROTATION		= 1 << 21,		/// UV‰ñ“]
-	PART_FLAG_U_SCALE			= 1 << 22,		/// UVƒXƒP[ƒ‹X
-	PART_FLAG_V_SCALE			= 1 << 23,		/// UVƒXƒP[ƒ‹Y
-	PART_FLAG_BOUNDINGRADIUS	= 1 << 24,		/// “–‚½‚è”¼Œa
+	PART_FLAG_U_MOVE			= 1 << 19,		/// UVç§»å‹•X
+	PART_FLAG_V_MOVE			= 1 << 20,		/// UVç§»å‹•Y
+	PART_FLAG_UV_ROTATION		= 1 << 21,		/// UVå›è»¢
+	PART_FLAG_U_SCALE			= 1 << 22,		/// UVã‚¹ã‚±ãƒ¼ãƒ«X
+	PART_FLAG_V_SCALE			= 1 << 23,		/// UVã‚¹ã‚±ãƒ¼ãƒ«Y
+	PART_FLAG_BOUNDINGRADIUS	= 1 << 24,		/// å½“ãŸã‚ŠåŠå¾„
 
-	PART_FLAG_INSTANCE_KEYFRAME = 1 << 25,		/// ƒCƒ“ƒXƒ^ƒ“ƒX
-	PART_FLAG_INSTANCE_START	= 1 << 26,		/// ƒCƒ“ƒXƒ^ƒ“ƒXFŠJnƒtƒŒ[ƒ€
-	PART_FLAG_INSTANCE_END		= 1 << 27,		/// ƒCƒ“ƒXƒ^ƒ“ƒXFI—¹ƒtƒŒ[ƒ€
-	PART_FLAG_INSTANCE_SPEED	= 1 << 28,		/// ƒCƒ“ƒXƒ^ƒ“ƒXFÄ¶‘¬“x
-	PART_FLAG_INSTANCE_LOOP		= 1 << 29,		/// ƒCƒ“ƒXƒ^ƒ“ƒXFƒ‹[ƒv‰ñ”
-	PART_FLAG_INSTANCE_LOOP_FLG = 1 << 30,		/// ƒCƒ“ƒXƒ^ƒ“ƒXFƒ‹[ƒvİ’è
+	PART_FLAG_INSTANCE_KEYFRAME = 1 << 25,		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+	PART_FLAG_INSTANCE_START	= 1 << 26,		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ï¼šé–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	PART_FLAG_INSTANCE_END		= 1 << 27,		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ï¼šçµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 
+	PART_FLAG_INSTANCE_SPEED	= 1 << 28,		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ï¼šå†ç”Ÿé€Ÿåº¦
+	PART_FLAG_INSTANCE_LOOP		= 1 << 29,		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ï¼šãƒ«ãƒ¼ãƒ—å›æ•°
+	PART_FLAG_INSTANCE_LOOP_FLG = 1 << 30,		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ï¼šãƒ«ãƒ¼ãƒ—è¨­å®š
 
 	NUM_PART_FLAGS
 };
 
-/** ’¸“_•ÏŒ`ƒtƒ‰ƒO */
+/** é ‚ç‚¹å¤‰å½¢ãƒ•ãƒ©ã‚° */
 enum {
 	VERTEX_FLAG_LT = 1 << 0,
 	VERTEX_FLAG_RT = 1 << 1,
@@ -155,7 +155,7 @@ enum {
 	VERTEX_FLAG_ONE = 1 << 4	// color blend only
 };
 
-/** ƒCƒ“ƒXƒ^ƒ“ƒXƒ‹[ƒvİ’èƒtƒ‰ƒO */
+/** ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒ«ãƒ¼ãƒ—è¨­å®šãƒ•ãƒ©ã‚° */
 enum {
 	INSTANCE_LOOP_FLAG_INFINITY = 1 << 0,		//
 	INSTANCE_LOOP_FLAG_REVERSE = 1 << 1,
@@ -166,31 +166,31 @@ enum {
 /** Animation Part Type */
 enum {
 	PARTTYPE_INVALID = -1,
-	PARTTYPE_NULL,			/// nullB—Ìˆæ‚ğ‚½‚¸SRTî•ñ‚Ì‚İB‚½‚¾‚µ‰~Œ`‚Ì“–‚½‚è”»’è‚Íİ’è‰Â”\B
-	PARTTYPE_NORMAL,		/// ’Êíƒp[ƒcB—Ìˆæ‚ğ‚ÂB‰æ‘œ‚Í–³‚­‚Ä‚à‚¢‚¢B
-	PARTTYPE_TEXT,			/// ƒeƒLƒXƒg(—\–ñ@–¢À‘•j
-	PARTTYPE_INSTANCE,		/// ƒCƒ“ƒXƒ^ƒ“ƒXB‘¼ƒAƒjƒAƒp[ƒc‚Ö‚ÌQÆBƒV[ƒ“•ÒWƒ‚[ƒh‚Ì‘ã‘Ö‚É‚È‚é‚à‚Ì
+	PARTTYPE_NULL,			/// nullã€‚é ˜åŸŸã‚’æŒãŸãšSRTæƒ…å ±ã®ã¿ã€‚ãŸã ã—å††å½¢ã®å½“ãŸã‚Šåˆ¤å®šã¯è¨­å®šå¯èƒ½ã€‚
+	PARTTYPE_NORMAL,		/// é€šå¸¸ãƒ‘ãƒ¼ãƒ„ã€‚é ˜åŸŸã‚’æŒã¤ã€‚ç”»åƒã¯ç„¡ãã¦ã‚‚ã„ã„ã€‚
+	PARTTYPE_TEXT,			/// ãƒ†ã‚­ã‚¹ãƒˆ(äºˆç´„ã€€æœªå®Ÿè£…ï¼‰
+	PARTTYPE_INSTANCE,		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚ä»–ã‚¢ãƒ‹ãƒ¡ã€ãƒ‘ãƒ¼ãƒ„ã¸ã®å‚ç…§ã€‚ã‚·ãƒ¼ãƒ³ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ã®ä»£æ›¿ã«ãªã‚‹ã‚‚ã®
 	PARTTYPE_NUM
 };
 
-/** “–‚½‚è”»’è‚Ìí—Ş */
+/** å½“ãŸã‚Šåˆ¤å®šã®ç¨®é¡ */
 enum {
 	INVALID = -1,
-	NONE,			///< “–‚½‚è”»’è‚Æ‚µ‚Äg‚í‚È‚¢B
-	QUAD,			///< ©İ‚É•ÏŒ`‚·‚él•ÓŒ`B’¸“_•ÏŒ`‚È‚Ç“K—pŒã‚Ì‚SŠp‚ğŒ‹‚ñ‚¾—ÌˆæBÅ‚àd‚¢B
-	AABB,			///< ‰ñ“]‚µ‚È‚¢‘S‘Ì‚ğˆÍ‚Ş‹éŒ`‚ÅŒğ·”»’è
-	CIRCLE,			///< ^‰~‚Ì”¼Œa‚Å‹——£‚É‚æ‚è”»’è‚·‚é
-	CIRCLE_SMIN,	///< ^‰~‚Ì”¼Œa‚Å‹——£‚É‚æ‚è”»’è‚·‚é (ƒXƒP[ƒ‹‚Íx,y‚ÌÅ¬’l‚ğ‚Æ‚éj
-	CIRCLE_SMAX,	///< ^‰~‚Ì”¼Œa‚Å‹——£‚É‚æ‚è”»’è‚·‚é (ƒXƒP[ƒ‹‚Íx,y‚ÌÅ‘å’l‚ğ‚Æ‚éj
+	NONE,			///< å½“ãŸã‚Šåˆ¤å®šã¨ã—ã¦ä½¿ã‚ãªã„ã€‚
+	QUAD,			///< è‡ªåœ¨ã«å¤‰å½¢ã™ã‚‹å››è¾ºå½¢ã€‚é ‚ç‚¹å¤‰å½¢ãªã©é©ç”¨å¾Œã®ï¼”è§’ã‚’çµã‚“ã é ˜åŸŸã€‚æœ€ã‚‚é‡ã„ã€‚
+	AABB,			///< å›è»¢ã—ãªã„å…¨ä½“ã‚’å›²ã‚€çŸ©å½¢ã§äº¤å·®åˆ¤å®š
+	CIRCLE,			///< çœŸå††ã®åŠå¾„ã§è·é›¢ã«ã‚ˆã‚Šåˆ¤å®šã™ã‚‹
+	CIRCLE_SMIN,	///< çœŸå††ã®åŠå¾„ã§è·é›¢ã«ã‚ˆã‚Šåˆ¤å®šã™ã‚‹ (ã‚¹ã‚±ãƒ¼ãƒ«ã¯x,yã®æœ€å°å€¤ã‚’ã¨ã‚‹ï¼‰
+	CIRCLE_SMAX,	///< çœŸå††ã®åŠå¾„ã§è·é›¢ã«ã‚ˆã‚Šåˆ¤å®šã™ã‚‹ (ã‚¹ã‚±ãƒ¼ãƒ«ã¯x,yã®æœ€å¤§å€¤ã‚’ã¨ã‚‹ï¼‰
 	//num
 };
 
-/** ƒ¿ƒuƒŒƒ“ƒh•û–@ */
+/** Î±ãƒ–ãƒ¬ãƒ³ãƒ‰æ–¹æ³• */
 enum BlendType {
-	BLEND_MIX,		///< 0 ƒuƒŒƒ“ƒhiƒ~ƒbƒNƒXj
-	BLEND_MUL,		///< 1 æZ
-	BLEND_ADD,		///< 2 ‰ÁZ
-	BLEND_SUB		///< 3 Œ¸Z
+	BLEND_MIX,		///< 0 ãƒ–ãƒ¬ãƒ³ãƒ‰ï¼ˆãƒŸãƒƒã‚¯ã‚¹ï¼‰
+	BLEND_MUL,		///< 1 ä¹—ç®—
+	BLEND_ADD,		///< 2 åŠ ç®—
+	BLEND_SUB		///< 3 æ¸›ç®—
 };
 
 

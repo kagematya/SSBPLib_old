@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 namespace ss{
@@ -18,20 +18,20 @@ struct UserData{
 		FLAG_STRING		= 1 << 3
 	};
 
-	int			m_flags;		/// ŠÜ‚Ü‚ê‚éƒf[ƒ^‚ÌŽí—Þ
-	int			m_partIndex;	/// ‚±‚Ìƒf[ƒ^‚Ìƒp[ƒcƒCƒ“ƒfƒbƒNƒX
-	int			m_integer;		/// ®”
-	int			m_rect[4];		/// ‹éŒ`ƒf[ƒ^
-	int			m_point[2];		/// À•Wƒf[ƒ^
-	int			m_strSize;		/// •¶Žš—ñ‚ÌƒTƒCƒY (byte count)
-	const char*	m_str;			/// •¶Žš—ñ (zero terminated)
+	int			m_flags;		/// å«ã¾ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿ã®ç¨®é¡ž
+	int			m_partIndex;	/// ã“ã®ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ¼ãƒ„ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int			m_integer;		/// æ•´æ•°
+	int			m_rect[4];		/// çŸ©å½¢ãƒ‡ãƒ¼ã‚¿
+	int			m_point[2];		/// åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	int			m_strSize;		/// æ–‡å­—åˆ—ã®ã‚µã‚¤ã‚º (byte count)
+	const char*	m_str;			/// æ–‡å­—åˆ— (zero terminated)
 
 
-	//reader‚ð‰î‚µ‚Äƒf[ƒ^‚ð“Ç‚ÝŽæ‚é
+	//readerã‚’ä»‹ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å–ã‚‹
 	void readData(DataArrayReader &reader, const ToPointer &ptr);
 
 private:
-	//ƒ[ƒƒNƒŠƒA
+	//ã‚¼ãƒ­ã‚¯ãƒªã‚¢
 	void init();
 
 };

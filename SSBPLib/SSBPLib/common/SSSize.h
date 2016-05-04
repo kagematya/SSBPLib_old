@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 
 namespace ss{
@@ -6,7 +6,7 @@ class SSPoint;
 
 
 /**
- * ÉTÉCÉYÉNÉâÉX
+ * „Çµ„Ç§„Ç∫„ÇØ„É©„Çπ
  */
 class SSSize{
 public:

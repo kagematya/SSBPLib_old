@@ -1,4 +1,4 @@
-#include "SS5ResourceCache.h"
+ï»¿#include "SS5ResourceCache.h"
 #include <string>
 #include "common/SSUtil.h"
 #include "SS5PlayerData.h"
@@ -51,19 +51,19 @@ SS5ResourceCache::~SS5ResourceCache()
 void SS5ResourceCache::regist(const void *data, size_t dataSize, const std::string &dataKey, const std::string &imageBaseDir)
 {
 	SS_ASSERT2(data, "Invalid data");
-	//“o˜^Ï‚İ‚©‚Ç‚¤‚©‚Ì”»’è
+	//ç™»éŒ²æ¸ˆã¿ã‹ã©ã†ã‹ã®åˆ¤å®š
 	if(m_dataDic.find(dataKey) != m_dataDic.end()){
 		RefcountResourceSet *ref = m_dataDic.at(dataKey);
-		ref->incCount();	//“o˜^Ï‚İ‚Ìê‡‚ÍƒJƒEƒ“ƒgƒAƒbƒv‚·‚é‚¾‚¯Bdata‚Ì“à—e‚Í–³‹(Å‰‚É“o˜^‚³‚ê‚Ä‚½‚à‚Ì—Dæ)
+		ref->incCount();	//ç™»éŒ²æ¸ˆã¿ã®å ´åˆã¯ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ã ã‘ã€‚dataã®å†…å®¹ã¯ç„¡è¦–(æœ€åˆã«ç™»éŒ²ã•ã‚Œã¦ãŸã‚‚ã®å„ªå…ˆ)
 		return;
 	}
 
-	/***** V‹K“o˜^ *****/
+	/***** æ–°è¦ç™»éŒ² *****/
 	
-	//‰æ‘œƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğì‚é
+	//ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’ä½œã‚‹
 	std::string baseDir = getImageBaseDir(imageBaseDir, static_cast<const ProjectData*>(data));
 
-	//ƒf[ƒ^‚ğì‚Á‚Ä“o˜^
+	//ãƒ‡ãƒ¼ã‚¿ã‚’ä½œã£ã¦ç™»éŒ²
 	RefcountResourceSet* rs = new RefcountResourceSet(static_cast<const char*>(data), dataSize, baseDir);
 	
 	m_dataDic.insert(std::make_pair(dataKey, rs));
@@ -77,10 +77,10 @@ void SS5ResourceCache::unregist(const std::string& dataKey)
 
 	RefcountResourceSet *ref = it->second;
 	ref->decCount();				//
-	assert(ref->getCount() >= 0);	//ƒ}ƒCƒiƒX‚É‚Í‚È‚ç‚È‚¢‚Í‚¸
+	assert(ref->getCount() >= 0);	//ãƒã‚¤ãƒŠã‚¹ã«ã¯ãªã‚‰ãªã„ã¯ãš
 
 	if(ref->getCount() == 0){
-		//‚±‚ÌdataKey‚ÍÁ‚µ‚ÄOKB‚È‚Ì‚ÅÁ‚·
+		//ã“ã®dataKeyã¯æ¶ˆã—ã¦OKã€‚ãªã®ã§æ¶ˆã™
 		SS_SAFE_DELETE(ref);
 		m_dataDic.erase(it);
 	}
@@ -102,7 +102,7 @@ void SS5ResourceCache::getTextureList(std::vector<std::string> *textureList, con
 	const ResourceSet *rs = findData(dataKey);
 	const CellCache *cellCache = rs->m_cellCache;
 
-	//todo:ss5player‚É‚à—‚½ƒR[ƒh‚ª‚ ‚éEEEresourceset‚ ‚½‚è‚Éˆê——æ“¾‹@”\‚½‚¹‚½•û‚ª‚¢‚¢‚©‚à‚µ‚ê‚È‚¢
+	//todo:ss5playerã«ã‚‚ä¼¼ãŸã‚³ãƒ¼ãƒ‰ãŒã‚ã‚‹ãƒ»ãƒ»ãƒ»resourcesetã‚ãŸã‚Šã«ä¸€è¦§å–å¾—æ©Ÿèƒ½æŒãŸã›ãŸæ–¹ãŒã„ã„ã‹ã‚‚ã—ã‚Œãªã„
 	int cellMapNum = cellCache->getCellMapNum();
 	textureList->resize(cellMapNum);
 	for (int i = 0; i < cellMapNum; ++i){
@@ -130,15 +130,15 @@ void SS5ResourceCache::destroyPlayer(SS5Player *&player) const
 
 std::string SS5ResourceCache::getImageBaseDir(const std::string &imageBaseDir, const ProjectData *data) const
 {
-	if (imageBaseDir == s_null){	// imageBaseDir‚Ìw’è‚ª‚È‚¢‚Æ‚«‚ÍƒpƒX‚ğì‚é
+	if (imageBaseDir == s_null){	// imageBaseDirã®æŒ‡å®šãŒãªã„ã¨ãã¯ãƒ‘ã‚¹ã‚’ä½œã‚‹
 		
 		if (data->imageBaseDir){
-			// ƒRƒ“ƒo[ƒg‚Éw’è‚³‚ê‚½ƒpƒX‚ğg—p‚·‚é
+			// ã‚³ãƒ³ãƒãƒ¼ãƒˆæ™‚ã«æŒ‡å®šã•ã‚ŒãŸãƒ‘ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹
 			ToPointer ptr(data);
 			return ptr.toString(data->imageBaseDir);
 		}
 		
-		//// ƒvƒƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚Æ“¯‚¶ƒfƒBƒŒƒNƒgƒŠ‚ğw’è‚·‚é
+		//// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã¨åŒã˜ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®šã™ã‚‹
 		//std::string directory;
 		//std::string filename;
 		//splitPath(directory, filename, ssbpFilepath);
@@ -154,7 +154,7 @@ const ResourceSet* SS5ResourceCache::findData(const std::string& dataKey) const
 	assert(it != m_dataDic.end());
 	
 	RefcountResourceSet *rrs = it->second;
-	return rrs->getResourceSet();	//“Á‚ÉƒJƒEƒ“ƒ^‚Ìã‚°‰º‚°‚È‚Ç‚Í‚µ‚Ü‚¹‚ñ
+	return rrs->getResourceSet();	//ç‰¹ã«ã‚«ã‚¦ãƒ³ã‚¿ã®ä¸Šã’ä¸‹ã’ãªã©ã¯ã—ã¾ã›ã‚“
 }
 
 

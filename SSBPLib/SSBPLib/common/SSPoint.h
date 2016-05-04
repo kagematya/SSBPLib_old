@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <math.h>
 
@@ -7,7 +7,7 @@ class SSSize;
 
 
 /**
- * À•WƒNƒ‰ƒX
+ * åº§æ¨™ã‚¯ãƒ©ã‚¹
  */
 class SSPoint{
 public:
@@ -83,13 +83,13 @@ public:
 	//	return SSPoint(cosf(a), sinf(a));
 	//}
 
-	// ‰ñ“]‚³‚¹‚é
+	// å›è»¢ã•ã›ã‚‹
 	void rotate(float angleRadian){
 		float tx = x;
 		x = tx * cos(angleRadian) - y * sin(angleRadian);
 		y = tx * sin(angleRadian) + y * cos(angleRadian);
 	}
-	// Šî€“_‚ğ’†S‚Æ‚µ‚Ä‰ñ“]‚³‚¹‚é
+	// åŸºæº–ç‚¹ã‚’ä¸­å¿ƒã¨ã—ã¦å›è»¢ã•ã›ã‚‹
 	void rotate(float angleRadian, const SSPoint &offset){
 		*this -= offset;
 		rotate(angleRadian);

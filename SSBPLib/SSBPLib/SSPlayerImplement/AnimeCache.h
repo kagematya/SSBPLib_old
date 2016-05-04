@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <map>
 #include <string>
@@ -13,17 +13,17 @@ struct PartData;
 struct AnimePackData;
 
 
-/** AnimationData‚Ö‚ÌƒAƒNƒZƒX‚ğ’ñ‹ŸBƒp[ƒcƒf[ƒ^‚ÍƒpƒbƒP[ƒW‹¤’Ê‚Ì‚à‚Ì‚¾‚ªA—˜•Ö«‚Ì‚½‚ß‚±‚±‚Å•ø‚¦‚Ä‚¨‚­ */
+/** AnimationDataã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’æä¾›ã€‚ãƒ‘ãƒ¼ãƒ„ãƒ‡ãƒ¼ã‚¿ã¯ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸å…±é€šã®ã‚‚ã®ã ãŒã€åˆ©ä¾¿æ€§ã®ãŸã‚ã“ã“ã§æŠ±ãˆã¦ãŠã */
 struct AnimeRef{
-	std::string				m_packName;			//todo:string‚¶‚á‚È‚­‚Äconst char*‚Ì•û‚ª‚æ‚³‚»‚¤
-	std::string				m_animeName;		//todo:string‚¶‚á‚È‚­‚Äconst char*‚Ì•û‚ª‚æ‚³‚»‚¤
-	const AnimationData*	m_animationData;	//ƒAƒjƒ[ƒVƒ‡ƒ“
+	std::string				m_packName;			//todo:stringã˜ã‚ƒãªãã¦const char*ã®æ–¹ãŒã‚ˆã•ãã†
+	std::string				m_animeName;		//todo:stringã˜ã‚ƒãªãã¦const char*ã®æ–¹ãŒã‚ˆã•ãã†
+	const AnimationData*	m_animationData;	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 
-	//const AnimePackData*	animePackData;		//‘®‚·‚éƒpƒbƒP[ƒW
-	const PartData*			m_partDatas;		//ƒp[ƒcƒf[ƒ^‚Ö‚ÌƒVƒ‡[ƒgƒJƒbƒganiemPackData->partDatas[]
-	int						m_numParts;			//ƒp[ƒcƒf[ƒ^”
+	//const AnimePackData*	animePackData;		//å±ã™ã‚‹ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸
+	const PartData*			m_partDatas;		//ãƒ‘ãƒ¼ãƒ„ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆaniemPackData->partDatas[]
+	int						m_numParts;			//ãƒ‘ãƒ¼ãƒ„ãƒ‡ãƒ¼ã‚¿æ•°
 
-	//PartData‚Ö‚ÌƒAƒNƒZƒT
+	//PartDataã¸ã®ã‚¢ã‚¯ã‚»ã‚µ
 	const PartData* getPartData(int partIndex) const{
 		assert(partIndex >= 0 && partIndex < m_numParts);
 		return &m_partDatas[partIndex];
@@ -32,38 +32,38 @@ struct AnimeRef{
 
 
 
-/** AnimationData‚ÉƒAƒNƒZƒX‚µ‚â‚·‚¢‚æ‚¤‚É‚±‚±‚Å•ø‚¦‚Ä‚¨‚­ */
+/** AnimationDataã«ã‚¢ã‚¯ã‚»ã‚¹ã—ã‚„ã™ã„ã‚ˆã†ã«ã“ã“ã§æŠ±ãˆã¦ãŠã */
 class AnimeCache{
 public:
-	/** data‚ğŒ³‚ÉAnimeRef‚ğ\’z */
+	/** dataã‚’å…ƒã«AnimeRefã‚’æ§‹ç¯‰ */
 	AnimeCache(const ProjectData *data);
 	~AnimeCache();
 	
 
-	/** packName‚ÆanimeName‚ğw’è‚µ‚ÄAnimeRef‚ğ“¾‚é */
+	/** packNameã¨animeNameã‚’æŒ‡å®šã—ã¦AnimeRefã‚’å¾—ã‚‹ */
 	const AnimeRef* getReference(const std::string& packName, const std::string& animeName) const;
 
-	/** animeName‚Ì‚İw’è‚µ‚ÄAnimeRef‚ğ“¾‚é */
+	/** animeNameã®ã¿æŒ‡å®šã—ã¦AnimeRefã‚’å¾—ã‚‹ */
 	const AnimeRef* getReference(const std::string& animeName) const;
 	
 
-	/** æ“ª‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğ•Ô‚· */	//memo:SS5Player‚Ì‰Šú‰»‚Å•K—v
+	/** å…ˆé ­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¿”ã™ */	//memo:SS5Playerã®åˆæœŸåŒ–ã§å¿…è¦
 	const AnimeRef* getFirstReference() const;
 
 	
-	/** ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì“o˜^–¼‚ÌƒŠƒXƒg‚ğæ“¾‚·‚éBå‚ÉƒfƒoƒbƒO—p */
+	/** ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç™»éŒ²åã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚ä¸»ã«ãƒ‡ãƒãƒƒã‚°ç”¨ */
 	void getAnimationList(std::list<std::string> *animlist) const;
 
 private:
-	/** data‚ğŒ³‚ÉAnimeRef‚ğ\’z */
+	/** dataã‚’å…ƒã«AnimeRefã‚’æ§‹ç¯‰ */
 	void init(const ProjectData* data);
 	void addAnimationData(ToPointer ptr, const AnimePackData *pack);
 
-	/** ƒtƒ@ƒCƒ‹ƒpƒX¶¬ */
+	/** ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ç”Ÿæˆ */
 	static std::string toPackAnimeKey(const std::string& packName, const std::string& animeName);
 	
 
-	std::map<std::string, AnimeRef>	m_animeRefs;	//memo:map‚È‚çÀ‘Ì‚Å‚à–â‘è‚È‚¢‚Í‚¸   <animekey, animeref>
+	std::map<std::string, AnimeRef>	m_animeRefs;	//memo:mapãªã‚‰å®Ÿä½“ã§ã‚‚å•é¡Œãªã„ã¯ãš   <animekey, animeref>
 };
 
 

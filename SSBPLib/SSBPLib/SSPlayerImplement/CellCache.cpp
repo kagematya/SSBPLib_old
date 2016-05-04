@@ -1,4 +1,4 @@
-#include "CellCache.h"
+ï»¿#include "CellCache.h"
 #include <vector>
 #include <map>
 #include <string>
@@ -30,15 +30,15 @@ const CellRef* CellCache::getReference(int index) const
 }
 
 
-//ƒf[ƒ^‚ğŒ©‚Äcellref‚Æimagepath‚ğ\’z
+//ãƒ‡ãƒ¼ã‚¿ã‚’è¦‹ã¦cellrefã¨imagepathã‚’æ§‹ç¯‰
 void CellCache::init(const ProjectData* data, const std::string& imageBaseDir)
 {
 	SS_ASSERT2(data, "Invalid data");
 		
 	m_imageBaseDir = imageBaseDir;
-	m_refs.resize(data->numCells);	//cell”‚¾‚¯—ÌˆæŠm•Û‚µ‚Ä‚¨‚­
+	m_refs.resize(data->numCells);	//cellæ•°ã ã‘é ˜åŸŸç¢ºä¿ã—ã¦ãŠã
 	
-	std::map<int, const char*> imagePathMap;	//”‚ª‚í‚©‚ç‚È‚¢‚Ì‚Å‚Ğ‚Æ‚Ü‚¸<index,path>‚Ìmap‚É‚µ‚Ä‚¨‚­
+	std::map<int, const char*> imagePathMap;	//æ•°ãŒã‚ã‹ã‚‰ãªã„ã®ã§ã²ã¨ã¾ãš<index,path>ã®mapã«ã—ã¦ãŠã
 	
 
 	ToPointer ptr(data);
@@ -48,11 +48,11 @@ void CellCache::init(const ProjectData* data, const std::string& imageBaseDir)
 		const Cell* cell = &cells[i];
 
 		const CellMap* cellMap = ptr.toCellMap(cell);
-		const char* cellname = ptr.toString(cell->name);			//ƒZƒ‹–¼
-		//const char* cellmapname = ptr.toString(cellMap->name);	//ƒZƒ‹ƒ}ƒbƒv–¼
+		const char* cellname = ptr.toString(cell->name);			//ã‚»ãƒ«å
+		//const char* cellmapname = ptr.toString(cellMap->name);	//ã‚»ãƒ«ãƒãƒƒãƒ—å
 		
-		//‚±‚±‚Å‚Íƒ[ƒh‚È‚Ç‚Í‚¹‚¸‚É”Ô†‚ğ•Û‘¶‚µ‚Æ‚­‚¾‚¯‚É—¯‚ß‚é
-		imagePathMap[cellMap->index] = ptr.toString(cellMap->imagePath);		//memo:‚±‚±‚Í‰½“x‚àã‘‚«‚³‚ê‚é‚¾‚ë‚¤‚ªconst char*‚ÌƒRƒs[‚È‚Ì‚Å‘åä•v
+		//ã“ã“ã§ã¯ãƒ­ãƒ¼ãƒ‰ãªã©ã¯ã›ãšã«ç•ªå·ã‚’ä¿å­˜ã—ã¨ãã ã‘ã«ç•™ã‚ã‚‹
+		imagePathMap[cellMap->index] = ptr.toString(cellMap->imagePath);		//memo:ã“ã“ã¯ä½•åº¦ã‚‚ä¸Šæ›¸ãã•ã‚Œã‚‹ã ã‚ã†ãŒconst char*ã®ã‚³ãƒ”ãƒ¼ãªã®ã§å¤§ä¸ˆå¤«
 		
 		
 		CellRef ref = {
@@ -64,16 +64,16 @@ void CellCache::init(const ProjectData* data, const std::string& imageBaseDir)
 	}
 
 	
-	//map --> vector ‚É‹l‚ß’¼‚· -----------------
+	//map --> vector ã«è©°ã‚ç›´ã™ -----------------
 	auto it = std::max_element(imagePathMap.begin(), imagePathMap.end());
-	if(it == imagePathMap.end()){			//‰æ‘œ–³‚µ
+	if(it == imagePathMap.end()){			//ç”»åƒç„¡ã—
 		m_imagePaths.clear();
 		return;
 	}
 	
 	int maxIndex = it->first;
 	m_imagePaths.resize(maxIndex + 1);
-	for(auto &index_path : imagePathMap){	//‹l‚ß‘Ö‚¦
+	for(auto &index_path : imagePathMap){	//è©°ã‚æ›¿ãˆ
 		m_imagePaths[index_path.first] = index_path.second;
 	}
 }
@@ -82,10 +82,10 @@ void CellCache::init(const ProjectData* data, const std::string& imageBaseDir)
 
 std::string CellCache::getTexturePath(int cellMapIndex) const
 {
-	assert(cellMapIndex >= 0 && cellMapIndex < m_imagePaths.size());	//index‚Ìassertƒ`ƒFƒbƒN‚Í‚·‚é
+	assert(cellMapIndex >= 0 && cellMapIndex < m_imagePaths.size());	//indexã®assertãƒã‚§ãƒƒã‚¯ã¯ã™ã‚‹
 #if 0
 	if(isAbsolutePath(m_imagePaths[cellMapIndex])){
-		return m_imagePaths[cellMapIndex];	//â‘ÎƒpƒX‚Ì‚Æ‚«‚Í‚»‚Ì‚Ü‚Üˆµ‚¤
+		return m_imagePaths[cellMapIndex];	//çµ¶å¯¾ãƒ‘ã‚¹ã®ã¨ãã¯ãã®ã¾ã¾æ‰±ã†
 	}
 #endif
 	std::string texturePath = m_imageBaseDir + m_imagePaths[cellMapIndex];

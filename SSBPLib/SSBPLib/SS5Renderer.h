@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "SS5PlayerTypes.h"
 
@@ -6,7 +6,7 @@ namespace ss{
 struct SSV3F_C4B_T2F_Quad;
 
 
-/** •`‰æ‹@”\‚Í‚±‚ê‚ğŒp³‚µ‚Äì‚Á‚Ä‚­‚¾‚³‚¢ */
+/** æç”»æ©Ÿèƒ½ã¯ã“ã‚Œã‚’ç¶™æ‰¿ã—ã¦ä½œã£ã¦ãã ã•ã„ */
 class SS5Renderer{
 public:
 	SS5Renderer(){}

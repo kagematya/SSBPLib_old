@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "SS5PlayerTypes.h"
 
@@ -7,7 +7,7 @@ class SS5Player;
 struct UserData;
 
 
-/** ƒ[ƒhƒCƒxƒ“ƒg‚È‚Ç‚ğ•ß‚Ü‚¦‚é‚Ì‚Å‚±‚ê‚ğŒp³‚µ‚Äì‚Á‚Ä‚­‚¾‚³‚¢ */
+/** ãƒ­ãƒ¼ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆãªã©ã‚’æ•ã¾ãˆã‚‹ã®ã§ã“ã‚Œã‚’ç¶™æ‰¿ã—ã¦ä½œã£ã¦ãã ã•ã„ */
 class SS5EventListener{
 public:
 	SS5EventListener(){}
@@ -19,19 +19,19 @@ public:
 	
 
 	/**
-	 * ƒ†[ƒU[ƒf[ƒ^‚ª‚ ‚Á‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+	 * ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ãŸã¨ãã«å‘¼ã°ã‚Œã‚‹
 	 * @param player
-	 * @param userData	ˆêƒIƒuƒWƒFƒNƒg‚È‚Ì‚ÅƒRƒs[‚µ‚Äg‚Á‚Ä‚­‚¾‚³‚¢
-	 * @param partName	userData‚ªİ’è‚³‚ê‚Ä‚¢‚éƒp[ƒc‚Ì–¼‘O
-	 * @param frameNo	userData‚ªİ’è‚³‚ê‚Ä‚¢‚éƒtƒŒ[ƒ€
+	 * @param userData	ä¸€æ™‚ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãªã®ã§ã‚³ãƒ”ãƒ¼ã—ã¦ä½¿ã£ã¦ãã ã•ã„
+	 * @param partName	userDataãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¼ãƒ„ã®åå‰
+	 * @param frameNo	userDataãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 	 */
 	virtual void SSonUserData(SS5Player *player, const UserData &userData, const char *partName, int frameNo) = 0;
 	//virtual void SSPlayEnd(SS5Player *player) = 0;
 	
-	/** Å‰‚ÌƒtƒŒ[ƒ€‚É“ü‚Á‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é */
+	/** æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å…¥ã£ãŸã¨ãã«å‘¼ã°ã‚Œã‚‹ */
 	virtual void SSonBeginFrame(SS5Player *player) = 0;
 
-	/** ÅŒã‚ÌƒtƒŒ[ƒ€‚É“ü‚Á‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é */
+	/** æœ€å¾Œã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å…¥ã£ãŸã¨ãã«å‘¼ã°ã‚Œã‚‹ */
 	virtual void SSonEndFrame(SS5Player *player) = 0;
 };
 

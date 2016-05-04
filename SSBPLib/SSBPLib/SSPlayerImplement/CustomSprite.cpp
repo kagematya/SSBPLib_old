@@ -1,4 +1,4 @@
-#include "CustomSprite.h"
+ï»¿#include "CustomSprite.h"
 #include "SSBPLib/SS5Player.h"
 #include "SSBPLib/common/SSUtil.h"
 
@@ -59,7 +59,7 @@ void CustomSprite::updateMatrixAndOpacity(const SSMatrix& rootMatrix, int rootOp
 		parentOpacity = rootOpacity;
 	}
 
-	//s—ñŒvZ
+	//è¡Œåˆ—è¨ˆç®—
 	SSMatrix mat;
 	m_state.matrixCompute(&mat);
 	mat *= parentMatrix;
@@ -68,10 +68,10 @@ void CustomSprite::updateMatrixAndOpacity(const SSMatrix& rootMatrix, int rootOp
 	m_state.m_mat = mat;
 
 	
-	//ƒAƒ‹ƒtƒ@‚Ì“`”d
+	//ã‚¢ãƒ«ãƒ•ã‚¡ã®ä¼æ’­
 	m_state.m_opacity = ( m_state.m_opacity * parentOpacity ) / 255.0;
 
-	//ƒCƒ“ƒXƒ^ƒ“ƒXƒp[ƒc‚Ìe‚ğİ’è
+	//ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒ‘ãƒ¼ãƒ„ã®è¦ªã‚’è¨­å®š
 	if (m_ssplayer){
 		float x, y;
 		m_mat.getTranslation(&x, &y);
@@ -82,13 +82,13 @@ void CustomSprite::updateMatrixAndOpacity(const SSMatrix& rootMatrix, int rootOp
 	}
 	
 
-	//cell‚ÌŒ´“_ŒvZ‚ğs‚¤
+	//cellã®åŸç‚¹è¨ˆç®—ã‚’è¡Œã†
 	SSMatrix tmp;
 	tmp.setTranslation(
-		m_rect.size.width * (0.5f - m_state.m_anchorX),	//ƒfƒtƒHƒ‹ƒg‚ªanchorX == 0.5‚É‚È‚Á‚Ä‚é
+		m_rect.size.width * (0.5f - m_state.m_anchorX),	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãŒanchorX == 0.5ã«ãªã£ã¦ã‚‹
 		m_rect.size.height * (0.5f - m_state.m_anchorY)
 	);
-	m_state.m_mat = tmp  * m_state.m_mat;	//cell‚ÌŒ´“_ˆÚ“®‚ğ‚µ‚Ä‚©‚çmatrix‚ª“K—p‚³‚ê‚éŒ`
+	m_state.m_mat = tmp  * m_state.m_mat;	//cellã®åŸç‚¹ç§»å‹•ã‚’ã—ã¦ã‹ã‚‰matrixãŒé©ç”¨ã•ã‚Œã‚‹å½¢
 
 	m_isStateChanged = false;
 }

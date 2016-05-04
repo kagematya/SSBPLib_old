@@ -1,4 +1,4 @@
-#include "SSPoint.h"
+﻿#include "SSPoint.h"
 #include <float.h>
 #include "SSUtil.h"
 #include "SSSize.h"

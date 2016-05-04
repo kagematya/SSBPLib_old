@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <vector>
 #include <string>
@@ -13,40 +13,40 @@ struct ProjectData;
  * CellRef
  */
 struct CellRef{
-	const Cell *m_cell;		//memo:‚±‚¢‚Â©g‚Í•s—v‚È‚Í‚¸
-	const char *m_cellname;	//ƒZƒ‹‚Ì–¼‘O
-	int m_cellMapIndex;		//ƒZƒ‹ƒ}ƒbƒv”Ô†
-	SSRect m_rect;			//cell‚Ì”ÍˆÍ
+	const Cell *m_cell;		//memo:ã“ã„ã¤è‡ªèº«ã¯ä¸è¦ãªã¯ãš
+	const char *m_cellname;	//ã‚»ãƒ«ã®åå‰
+	int m_cellMapIndex;		//ã‚»ãƒ«ãƒãƒƒãƒ—ç•ªå·
+	SSRect m_rect;			//cellã®ç¯„å›²
 };
 
 
 /**
- * ¶‚Ìƒf[ƒ^‚ğˆµ‚¢‚â‚·‚­‚·‚é‚½‚ßACellü‚è‚ÉŠÖ‚µ‚Ä‚Ì\’z‚ğs‚¤
- *   data‚ğŒ³‚É‚µ‚ÄACellRef‚Æ‰æ‘œƒpƒX‚ğ\’z‚·‚é
+ * ç”Ÿã®ãƒ‡ãƒ¼ã‚¿ã‚’æ‰±ã„ã‚„ã™ãã™ã‚‹ãŸã‚ã€Cellå‘¨ã‚Šã«é–¢ã—ã¦ã®æ§‹ç¯‰ã‚’è¡Œã†
+ *   dataã‚’å…ƒã«ã—ã¦ã€CellRefã¨ç”»åƒãƒ‘ã‚¹ã‚’æ§‹ç¯‰ã™ã‚‹
  */
 class CellCache{
 public:
-	/** data‚ğŒ³‚ÉCellRef‚ğ\’z‚·‚é */
+	/** dataã‚’å…ƒã«CellRefã‚’æ§‹ç¯‰ã™ã‚‹ */
 	CellCache(const ProjectData *data, const std::string &imageBaseDir);
 	~CellCache();
 
-	/** w’è”Ô†‚ÌCellRef‚ğ•Ô‚· */
+	/** æŒ‡å®šç•ªå·ã®CellRefã‚’è¿”ã™ */
 	const CellRef* getReference(int index) const;
 
 
-	//w’è‚µ‚½CellMap‚ÌƒeƒNƒXƒ`ƒƒ–¼‚ğæ“¾‚·‚é
+	//æŒ‡å®šã—ãŸCellMapã®ãƒ†ã‚¯ã‚¹ãƒãƒ£åã‚’å–å¾—ã™ã‚‹
 	std::string getTexturePath(int cellMapIndex) const;
 
-	//CellMap”
+	//CellMapæ•°
 	int getCellMapNum() const;
 
 private:
-	/** data‚ğŒ³‚ÉCellRef‚ğ\’z‚·‚é*/
+	/** dataã‚’å…ƒã«CellRefã‚’æ§‹ç¯‰ã™ã‚‹*/
 	void init(const ProjectData* data, const std::string& imageBaseDir);
 
 	std::string m_imageBaseDir;
-	std::vector<const char *> m_imagePaths;	//ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹–¼(“Yš‚ÍƒZƒ‹ƒ}ƒbƒv”Ô†‚É‘Î‰)
-	std::vector<CellRef> m_refs;			//CellRefŒQ		//memo:”‚ª“®“I‚É•Ï‰»‚·‚é‚±‚Æ‚Í‚È‚¢‚Ì‚ÅÀ‘Ì‚ğ“Ë‚Á‚ñ‚Å‚Ü‚·
+	std::vector<const char *> m_imagePaths;	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«å(æ·»å­—ã¯ã‚»ãƒ«ãƒãƒƒãƒ—ç•ªå·ã«å¯¾å¿œ)
+	std::vector<CellRef> m_refs;			//CellRefç¾¤		//memo:æ•°ãŒå‹•çš„ã«å¤‰åŒ–ã™ã‚‹ã“ã¨ã¯ãªã„ã®ã§å®Ÿä½“ã‚’çªã£è¾¼ã‚“ã§ã¾ã™
 };
 
 

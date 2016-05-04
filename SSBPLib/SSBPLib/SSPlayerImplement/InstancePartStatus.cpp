@@ -1,4 +1,4 @@
-#include "InstancePartStatus.h"
+ï»¿#include "InstancePartStatus.h"
 #include "DataArrayReader.h"
 #include "SSBPLib/SSPlayerStatus.h"
 
@@ -19,7 +19,7 @@ InstancePartStatus::InstancePartStatus()
 }
 
 
-//“Ç‚İæ‚è
+//èª­ã¿å–ã‚Š
 void InstancePartStatus::readInstancePartStatus(DataArrayReader &reader, int readFlags)
 {
 	if (readFlags & PART_FLAG_INSTANCE_KEYFRAME){
@@ -42,73 +42,73 @@ void InstancePartStatus::readInstancePartStatus(DataArrayReader &reader, int rea
 
 		int lflags = reader.readS16();
 		if (lflags & INSTANCE_LOOP_FLAG_INFINITY ){
-			m_infinity = true;		//–³ŒÀƒ‹[ƒv
+			m_infinity = true;		//ç„¡é™ãƒ«ãƒ¼ãƒ—
 		}
 		if (lflags & INSTANCE_LOOP_FLAG_REVERSE){
-			m_reverse = true;		//‹tÄ¶
+			m_reverse = true;		//é€†å†ç”Ÿ
 		}
 		if (lflags & INSTANCE_LOOP_FLAG_PINGPONG){
-			m_pingpong = true;		//‰•œ
+			m_pingpong = true;		//å¾€å¾©
 		}
 		if (lflags & INSTANCE_LOOP_FLAG_INDEPENDENT){
-			m_independent = true;	//“Æ—§
+			m_independent = true;	//ç‹¬ç«‹
 		}
 	}
 }
 
 
-//“Ç‚İæ‚èŒã‚ÌŒvZ
+//èª­ã¿å–ã‚Šå¾Œã®è¨ˆç®—
 int InstancePartStatus::getTime(int time) const
 {
-	int	reftime = static_cast<int>(time * m_refSpeed) - m_refKeyframe; //ŠJn‚©‚çŒ»İ‚ÌŒo‰ßŠÔ
-	if(reftime < 0){ return time; }									   //‚»‚à‚»‚à¶‘¶ŠÔ‚É‘¶İ‚µ‚Ä‚¢‚È‚¢
+	int	reftime = static_cast<int>(time * m_refSpeed) - m_refKeyframe; //é–‹å§‹ã‹ã‚‰ç¾åœ¨ã®çµŒéæ™‚é–“
+	if(reftime < 0){ return time; }									   //ãã‚‚ãã‚‚ç”Ÿå­˜æ™‚é–“ã«å­˜åœ¨ã—ã¦ã„ãªã„
 
-	int inst_scale = (m_refEndframe - m_refStartframe) + 1; //ƒCƒ“ƒXƒ^ƒ“ƒX‚ÌÚ
-	if (inst_scale <= 0){ return time; }					//Ú‚ª‚O‚à‚µ‚­‚Íƒ}ƒCƒiƒXi‚ ‚è“¾‚È‚¢
+	int inst_scale = (m_refEndframe - m_refStartframe) + 1; //ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å°º
+	if (inst_scale <= 0){ return time; }					//å°ºãŒï¼ã‚‚ã—ãã¯ãƒã‚¤ãƒŠã‚¹ï¼ˆã‚ã‚Šå¾—ãªã„
 
-	int	nowloop = reftime / inst_scale;		//Œ»İ‚Ü‚Å‚Ìƒ‹[ƒv”
-	int nowframe = reftime % inst_scale;	//ƒ‹[ƒv‚ğ‰Á–¡‚µ‚È‚¢ƒCƒ“ƒXƒ^ƒ“ƒXƒAƒjƒ“à‚ÌƒtƒŒ[ƒ€
+	int	nowloop = reftime / inst_scale;		//ç¾åœ¨ã¾ã§ã®ãƒ«ãƒ¼ãƒ—æ•°
+	int nowframe = reftime % inst_scale;	//ãƒ«ãƒ¼ãƒ—ã‚’åŠ å‘³ã—ãªã„ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚¢ãƒ‹ãƒ¡å†…ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 	
 
-	//–³ŒÀƒ‹[ƒv‚Å–³‚¢‚Éƒ‹[ƒv”‚ğƒ`ƒFƒbƒN
+	//ç„¡é™ãƒ«ãƒ¼ãƒ—ã§ç„¡ã„æ™‚ã«ãƒ«ãƒ¼ãƒ—æ•°ã‚’ãƒã‚§ãƒƒã‚¯
 	if (!m_infinity){
-		//‰ñ”§ŒÀ‚ª‚ ‚é‚Ì‚ÅI’[ƒ`ƒFƒbƒN‚ğ‚·‚é
-		int checkloopnum = m_refloopNum;		//ƒ‹[ƒvI—¹”
-		if (m_pingpong){ checkloopnum *= 2; }	//pingpong‚Ìê‡‚Å‚Í‚Q”{‚É‚·‚é
+		//å›æ•°åˆ¶é™ãŒã‚ã‚‹ã®ã§çµ‚ç«¯ãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹
+		int checkloopnum = m_refloopNum;		//ãƒ«ãƒ¼ãƒ—çµ‚äº†æ•°
+		if (m_pingpong){ checkloopnum *= 2; }	//pingpongã®å ´åˆã§ã¯ï¼’å€ã«ã™ã‚‹
 
 		if (nowloop >= checkloopnum){
-			return endFrame();		//ƒ‹[ƒvI—¹‚Ì‚Æ‚«‚ÍI‚í‚è‚ÌƒtƒŒ[ƒ€‚ğ•Ô‚·
+			return endFrame();		//ãƒ«ãƒ¼ãƒ—çµ‚äº†ã®ã¨ãã¯çµ‚ã‚ã‚Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¿”ã™
 		}
 	}
 
-	//Œ»İ‚ÌÄ¶ƒtƒŒ[ƒ€‚ÌŒvZ
+	//ç¾åœ¨ã®å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ ã®è¨ˆç®—
 	bool isReverse = m_reverse;
 	if (m_pingpong && (nowloop % 2 == 1)){
-		isReverse = !isReverse;	//”½“]
+		isReverse = !isReverse;	//åè»¢
 	}
 
 	if (isReverse){
-		return m_refEndframe - nowframe;	//ƒŠƒo[ƒX‚Ì
+		return m_refEndframe - nowframe;	//ãƒªãƒãƒ¼ã‚¹ã®æ™‚
 	}
-	return nowframe + m_refStartframe;	//’Êí
+	return nowframe + m_refStartframe;	//é€šå¸¸æ™‚
 }
 
 
 
-//ƒtƒ‰ƒO‚ğl—¶‚µ‚ÄI—¹ƒtƒŒ[ƒ€‚ğ•Ô‚·
+//ãƒ•ãƒ©ã‚°ã‚’è€ƒæ…®ã—ã¦çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¿”ã™
 int InstancePartStatus::endFrame() const
 {
 	if(m_pingpong && m_reverse){
-		return m_refEndframe;		//pingpong && ”½“]
+		return m_refEndframe;		//pingpong && åè»¢
 	}
 	else if(m_pingpong){
 		return m_refStartframe;		//pingpong
 	}
 	else if(m_reverse){
-		return m_refStartframe;		//”½“]
+		return m_refStartframe;		//åè»¢
 	}
 	
-	return m_refEndframe;			//’Êí
+	return m_refEndframe;			//é€šå¸¸
 }
 
 

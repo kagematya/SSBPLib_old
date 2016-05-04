@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include <map>
@@ -12,7 +12,7 @@ class SS5Renderer;
 class SS5EventListener;
 
 	
-/** addData‚ÉAanime,cell‚Ì¶¬‚ğs‚¤BSS5Player‚Í‚±‚±‚©‚çƒŠƒ\[ƒX‚ğfind‚µ‚Ä¶¬‚·‚é */
+/** addDataæ™‚ã«ã€anime,cellã®ç”Ÿæˆã‚’è¡Œã†ã€‚SS5Playerã¯ã“ã“ã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹ã‚’findã—ã¦ç”Ÿæˆã™ã‚‹ */
 class SS5ResourceCache{
 public:
 	SS5ResourceCache();
@@ -22,42 +22,42 @@ public:
 	static const std::string s_null;
 
 	/**
-	 * ssbpƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İŠÇ—‘ÎÛ‚Æ‚µ‚Ü‚·B‘½d“o˜^‘Îô‚Ì‚½‚ß‚ÉQÆƒJƒEƒ“ƒ^‚É‚æ‚éŠÇ—‚É‚È‚è‚Ü‚·
+	 * ssbpãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ç®¡ç†å¯¾è±¡ã¨ã—ã¾ã™ã€‚å¤šé‡ç™»éŒ²å¯¾ç­–ã®ãŸã‚ã«å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã«ã‚ˆã‚‹ç®¡ç†ã«ãªã‚Šã¾ã™
 	 *
-	 * @param  data			ssbp‚Ìƒf[ƒ^(’†‚ÅƒRƒs[‚³‚ê‚Ü‚·)
-	 * @param  dataSize		data‚ÌƒTƒCƒY
-	 * @param  dataKey		“o˜^–¼
-	 * @param  imageBaseDir ‰æ‘œƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İŒ³ƒ‹[ƒgƒpƒX. È—ª‚ÍƒRƒ“ƒo[ƒg‚Éw’è‚³‚ê‚½ƒpƒX‚ğg—p‚·‚é.(w’è‚·‚é‚Ì‚ª‚¨‚·‚·‚ß)
+	 * @param  data			ssbpã®ãƒ‡ãƒ¼ã‚¿(ä¸­ã§ã‚³ãƒ”ãƒ¼ã•ã‚Œã¾ã™)
+	 * @param  dataSize		dataã®ã‚µã‚¤ã‚º
+	 * @param  dataKey		ç™»éŒ²å
+	 * @param  imageBaseDir ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿å…ƒãƒ«ãƒ¼ãƒˆãƒ‘ã‚¹. çœç•¥æ™‚ã¯ã‚³ãƒ³ãƒãƒ¼ãƒˆæ™‚ã«æŒ‡å®šã•ã‚ŒãŸãƒ‘ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹.(æŒ‡å®šã™ã‚‹ã®ãŒãŠã™ã™ã‚)
 	 */
 	void regist(const void *data, size_t dataSize, const std::string &dataKey, const std::string &imageBaseDir = s_null);
 
 	
-	/** w’èƒf[ƒ^‚ğ‰ğ•ú‚µ‚Ü‚·B“o˜^–¼‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢ */
+	/** æŒ‡å®šãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã—ã¾ã™ã€‚ç™»éŒ²åã‚’æŒ‡å®šã—ã¦ãã ã•ã„ */
 	void unregist(const std::string& dataKey);
 
-	/** ‘S‚Ä‚Ìƒf[ƒ^‚ğ‰ğ•ú‚µ‚Ü‚· */
+	/** å…¨ã¦ã®ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã—ã¾ã™ */
 	void unregistAll();
 
 
-	/** w’è‚µ‚½ƒf[ƒ^‚ª•K—v‚Æ‚·‚éƒeƒNƒXƒ`ƒƒ–¼‚ÌƒŠƒXƒg‚ğæ“¾ */
+	/** æŒ‡å®šã—ãŸãƒ‡ãƒ¼ã‚¿ãŒå¿…è¦ã¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£åã®ãƒªã‚¹ãƒˆã‚’å–å¾— */
 	void getTextureList(std::vector<std::string> *textureList, const std::string &dataKey) const;
 	
 
-	/** SS5Player‚Ì¶¬ */
+	/** SS5Playerã®ç”Ÿæˆ */
 	SS5Player* createPlayer(const std::string &dataKey, SS5Renderer *renderer, SS5EventListener *eventListener) const;
 	void destroyPlayer(SS5Player *&player) const;
 	
 
 private:
-	//imageBaseDir‚Ìw’è‚ª‚È‚¢‚Æ‚«‚Ídata‚Ì’†‚ğŒ©‚ÄƒfƒBƒŒƒNƒgƒŠ‚ğ•Ô‚·
+	//imageBaseDirã®æŒ‡å®šãŒãªã„ã¨ãã¯dataã®ä¸­ã‚’è¦‹ã¦ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¿”ã™
 	std::string getImageBaseDir(const std::string &imageBaseDir, const ProjectData *data) const;
 	
-	//–¼‘O‚É‘Î‰‚·‚éƒf[ƒ^‚ğæ“¾
+	//åå‰ã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	const ResourceSet* findData(const std::string& dataKey) const;
 
 
 	
-	/** regist”‚ğƒJƒEƒ“ƒg‚·‚é‚½‚ß‚Ì\‘¢ */
+	/** registæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãŸã‚ã®æ§‹é€  */
 	class RefcountResourceSet{
 	public:
 		RefcountResourceSet(const char *data, size_t dataSize, const std::string &imageBaseDir)
@@ -79,7 +79,7 @@ private:
 		std::unique_ptr<ResourceSet> m_resourceSet;
 	};
 	
-	std::map<std::string, RefcountResourceSet*>	m_dataDic;	//‚±‚±‚Éƒf[ƒ^‚ğ“o˜^‚·‚é
+	std::map<std::string, RefcountResourceSet*>	m_dataDic;	//ã“ã“ã«ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã™ã‚‹
 
 
 private: //non copyable

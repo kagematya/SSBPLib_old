@@ -1,4 +1,4 @@
-#include "AnimeCache.h"
+ï»¿#include "AnimeCache.h"
 #include <map>
 #include <string>
 #include <list>
@@ -19,16 +19,16 @@ AnimeCache::~AnimeCache()
 }
 
 
-//packName‚ÆanimeName‚ğw’è‚µ‚ÄAnimeRef‚ğ“¾‚é
+//packNameã¨animeNameã‚’æŒ‡å®šã—ã¦AnimeRefã‚’å¾—ã‚‹
 const AnimeRef* AnimeCache::getReference(const std::string& packName, const std::string& animeName) const
 {
-	std::string key = toPackAnimeKey(packName, animeName);	//todo:animeName‚¾‚¯‚É“ˆê‚µ‚½‚¢
+	std::string key = toPackAnimeKey(packName, animeName);	//todo:animeNameã ã‘ã«çµ±ä¸€ã—ãŸã„
 	SS_ASSERT2(m_animeRefs.find(key) != m_animeRefs.end(), "Not found animation");
 	
 	return &(m_animeRefs.at(key));
 }
 
-//animeName‚Ì‚İw’è‚µ‚ÄAnimeRef‚ğ“¾‚é
+//animeNameã®ã¿æŒ‡å®šã—ã¦AnimeRefã‚’å¾—ã‚‹
 const AnimeRef* AnimeCache::getReference(const std::string& animeName) const
 {
 	SS_ASSERT2(m_animeRefs.find(animeName) != m_animeRefs.end(), "Not found animation");
@@ -36,7 +36,7 @@ const AnimeRef* AnimeCache::getReference(const std::string& animeName) const
 	return &(m_animeRefs.at(animeName));
 }
 
-//Å‰‚ÌAnimeRef‚ğ“¾‚é
+//æœ€åˆã®AnimeRefã‚’å¾—ã‚‹
 const AnimeRef* AnimeCache::getFirstReference() const
 {
 	SS_ASSERT2(m_animeRefs.begin() != m_animeRefs.end(), "No Animation");
@@ -45,7 +45,7 @@ const AnimeRef* AnimeCache::getFirstReference() const
 	return &(it->second);
 }
 
-//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒŠƒXƒg‚ğì‚é
+//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒªã‚¹ãƒˆã‚’ä½œã‚‹
 void AnimeCache::getAnimationList(std::list<std::string> *animlist) const
 {
 	//animlist->clear();
@@ -57,7 +57,7 @@ void AnimeCache::getAnimationList(std::list<std::string> *animlist) const
 
 
 
-//data‚ğŒ³‚ÉAnimeRef‚ğ\’z
+//dataã‚’å…ƒã«AnimeRefã‚’æ§‹ç¯‰
 void AnimeCache::init(const ProjectData* data)
 {
 	SS_ASSERT2(data, "Invalid data");
@@ -69,11 +69,11 @@ void AnimeCache::init(const ProjectData* data)
 		
 		const AnimePackData* pack = &animePacks[packIndex];
 
-		addAnimationData(ptr, pack);		//ƒpƒbƒP[ƒW‚©‚çAnimationData‚ğ“o˜^‚·‚é
+		addAnimationData(ptr, pack);		//ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‹ã‚‰AnimationDataã‚’ç™»éŒ²ã™ã‚‹
 	}
 }
 
-//ƒpƒbƒP[ƒW‚©‚çAnimationData‚ğ“o˜^‚·‚é
+//ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‹ã‚‰AnimationDataã‚’ç™»éŒ²ã™ã‚‹
 void AnimeCache::addAnimationData(ToPointer ptr, const AnimePackData *pack)
 {
 	const char* packName = ptr.toString(pack->name);
@@ -89,12 +89,12 @@ void AnimeCache::addAnimationData(ToPointer ptr, const AnimePackData *pack)
 			packName, animeName, anime, partDatas, pack->numParts
 		};
 			
-		// packName + animeName‚Å‚Ì“o˜^
+		// packName + animeNameã§ã®ç™»éŒ²
 		std::string key = toPackAnimeKey(packName, animeName);
 		SSLOG("anime key: %s", key.c_str());
 		m_animeRefs.insert(std::make_pair(key, ref));
 
-		// animeName‚Ì‚İ‚Å‚Ì“o˜^
+		// animeNameã®ã¿ã§ã®ç™»éŒ²
 		m_animeRefs.insert(std::make_pair(animeName, ref));
 	}
 }
@@ -102,7 +102,7 @@ void AnimeCache::addAnimationData(ToPointer ptr, const AnimePackData *pack)
 
 
 
-//ƒtƒ@ƒCƒ‹ƒpƒX¶¬
+//ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ç”Ÿæˆ
 std::string AnimeCache::toPackAnimeKey(const std::string& packName, const std::string& animeName){
 	return packName + "/" + animeName;		//return Format("%s/%s", packName.c_str(), animeName.c_str());
 }

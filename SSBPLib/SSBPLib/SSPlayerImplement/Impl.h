@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-//SS5Player.cpp‚Ì’†g‚ğˆÚ‚µ‚½‚¾‚¯
+//SS5Player.cppã®ä¸­èº«ã‚’ç§»ã—ãŸã ã‘
 #include <string>
 #include <vector>
 #include <stdarg.h>
@@ -10,7 +10,7 @@
 namespace ss{
 
 	
-// printf Œ`®‚ÌƒtƒH[ƒ}ƒbƒg
+// printf å½¢å¼ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 static std::string Format(const char* format, ...){
 
 	static std::vector<char> tmp(1000);

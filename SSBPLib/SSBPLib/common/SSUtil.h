@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 #include <assert.h>
 
 namespace ss{
 
 /**
- * ’è”
+ * å®šæ•°
  */
 static const float ssPI = 3.14159265358979323846f;
 static const float ss2PI = ssPI * 2;
@@ -31,20 +31,20 @@ static const float ss2PI = ssPI * 2;
 
 
 
-//”z—ñ‚ÌƒTƒCƒY‚ğ•Ô‚·
+//é…åˆ—ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 template<class TYPE, size_t N>
 size_t lengthof(const TYPE (&ar)[N]){
 	return N;
 }
 
-//[minVal:maxVal]‚Ì”ÍˆÍ‚É‚·‚é
+//[minVal:maxVal]ã®ç¯„å›²ã«ã™ã‚‹
 template<class T>
 T clamp(T val, T minVal, T maxVal){
 	assert(minVal <= maxVal);
 	return std::min(std::max(val, minVal), maxVal);
 }
 
-//[minVal:maxVal)‚Ì”ÍˆÍ‚Åƒ‹[ƒv‚³‚¹‚é
+//[minVal:maxVal)ã®ç¯„å›²ã§ãƒ«ãƒ¼ãƒ—ã•ã›ã‚‹
 template<class T>
 T wrap(T val, T minVal, T maxVal){
 	assert(minVal < maxVal);

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "SSBPLib/SS5PlayerData.h"
 #include "SSBPLib/SS5PlayerTypes.h"
@@ -7,7 +7,7 @@ namespace ss{
 
 /**
  * DataArrayReader
- * —^‚¦‚ç‚ê‚½ƒoƒbƒtƒ@‚ğ“Ç‚İi‚ß‚Ä‚­‚¾‚¯
+ * ä¸ãˆã‚‰ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã‚’èª­ã¿é€²ã‚ã¦ãã ã‘
  */
 class DataArrayReader{
 public:

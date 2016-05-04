@@ -1,4 +1,4 @@
-#include "SS5UserData.h"
+ï»¿#include "SS5UserData.h"
 #include "SSPlayerImplement/DataArrayReader.h"
 #include "SSPlayerImplement/ToPointer.h"
 
@@ -20,7 +20,7 @@ void UserData::init()
 
 void UserData::readData(DataArrayReader &reader, const ToPointer &ptr)
 {
-	init();	//‰Šú‰»
+	init();	//åˆæœŸåŒ–
 
 
 	m_flags = reader.readU16();

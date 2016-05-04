@@ -1,4 +1,4 @@
-#include "SSSize.h"
+﻿#include "SSSize.h"
 #include <math.h>
 #include <float.h>
 #include "SSUtil.h"

@@ -1,33 +1,33 @@
-#pragma once
+ï»¿#pragma once
 
 namespace ss{
 class DataArrayReader;
 
-/** ƒCƒ“ƒXƒ^ƒ“ƒXƒp[ƒc‚Ìó‘Ô‚ğ•\Œ»(EEE‚µ‚Ä‚é‚à‚Ì‚Æv‚í‚ê‚éBSS5Player.cpp‚©‚ç”²‚«‚¾‚µ‚½‚¾‚¯) */
+/** ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒ‘ãƒ¼ãƒ„ã®çŠ¶æ…‹ã‚’è¡¨ç¾(ãƒ»ãƒ»ãƒ»ã—ã¦ã‚‹ã‚‚ã®ã¨æ€ã‚ã‚Œã‚‹ã€‚SS5Player.cppã‹ã‚‰æŠœãã ã—ãŸã ã‘) */
 class InstancePartStatus{
 public:
-	int m_refKeyframe;	//‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª”z’u‚³‚ê‚½ƒL[ƒtƒŒ[ƒ€iâ‘ÎŠÔj
+	int m_refKeyframe;	//ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒé…ç½®ã•ã‚ŒãŸã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ï¼ˆçµ¶å¯¾æ™‚é–“ï¼‰
 	int m_refStartframe;
 	int m_refEndframe;
 	float m_refSpeed;
 	int m_refloopNum;
 
-	bool m_infinity;	//–³ŒÀƒ‹[ƒv
-	bool m_reverse;		//‹tÄ¶
-	bool m_pingpong;	//‰•œ
-	bool m_independent;	//“Æ—§
+	bool m_infinity;	//ç„¡é™ãƒ«ãƒ¼ãƒ—
+	bool m_reverse;		//é€†å†ç”Ÿ
+	bool m_pingpong;	//å¾€å¾©
+	bool m_independent;	//ç‹¬ç«‹
 
 	
 	InstancePartStatus();
 
-	//ƒCƒ“ƒXƒ^ƒ“ƒXƒp[ƒc‚Ìó‘Ô‚ğ“Ç‚İæ‚è
+	//ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒ‘ãƒ¼ãƒ„ã®çŠ¶æ…‹ã‚’èª­ã¿å–ã‚Š
 	void readInstancePartStatus(DataArrayReader &readerm, int readFlags);
 
-	//“Ç‚İæ‚èŒã‚É‚È‚ñ‚©ŒvZ‚µ‚Ä‚é•”•ª‚ğ”²‚«o‚µ‚½
-	int getTime(int time) const;	//time‚Æ‚¢‚¤‚©frame‚¾‚Æv‚¤
+	//èª­ã¿å–ã‚Šå¾Œã«ãªã‚“ã‹è¨ˆç®—ã—ã¦ã‚‹éƒ¨åˆ†ã‚’æŠœãå‡ºã—ãŸ
+	int getTime(int time) const;	//timeã¨ã„ã†ã‹frameã ã¨æ€ã†
 
 private:
-	int endFrame() const;	//ƒtƒ‰ƒOî•ñ‚ğ‚İ‚ÄI—¹ƒtƒŒ[ƒ€‚ğ•Ô‚·
+	int endFrame() const;	//ãƒ•ãƒ©ã‚°æƒ…å ±ã‚’ã¿ã¦çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¿”ã™
 };
 
 

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "SSPoint.h"
 #include "SSSize.h"
@@ -7,7 +7,7 @@ namespace ss{
 
 
 /**
- * ‹éŒ`ƒNƒ‰ƒX
+ * çŸ©å½¢ã‚¯ãƒ©ã‚¹
  */
 class SSRect{
 public:
