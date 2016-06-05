@@ -21,13 +21,22 @@ CellCache::~CellCache()
 
 const CellRef* CellCache::getReference(int index) const
 {
-	if (index < 0 || index >= static_cast<int>(m_refs.size())){
-		SSLOGERROR("Index out of range > %d", index);
-		SS_ASSERT(0);
-	}
-	
+	SS_ASSERT2(index >= 0 && index < m_refs.size(), "index is out of range.");
 	return &(m_refs[index]);
 }
+
+int CellCache::indexOfCell(const std::string &cellName) const
+{
+	//cellnameは同名も存在できるようだが、ひとまず最初に見つかったものを返すことにする
+	for(int i = 0; i < m_refs.size(); ++i){
+		const CellRef *ref = getReference(i);
+		if(cellName == ref->m_cellname){
+			return i;		//名前一致したので返す
+		}
+	}
+	return -1;				//名前一致しなかったとき
+}
+
 
 
 //データを見てcellrefとimagepathを構築

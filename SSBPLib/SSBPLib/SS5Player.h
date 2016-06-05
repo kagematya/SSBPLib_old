@@ -81,10 +81,14 @@ public:
 	int getPartNum() const;							//パーツ数を取得
 	const char* getPartName(int partId) const;		//indexからパーツ名を取得
 	int indexOfPart(const char* partName) const;	//パーツ名からindexを取得
-	bool getPartState(ResluteState& result, const char* name) const;	//パーツの名から、パーツ情報を取得
+	bool getPartState(ResluteState& result, const char* name) const;	//パーツ名から、パーツ情報を取得
 
 	/** パーツの表示、非表示を設定します */
-	void setPartVisible( int partNo, bool flg );
+	void setPartVisible( int partId, bool flg );
+
+	/** cellの入れ替えをします */
+	int indexOfCell(const char* cellName) const;	//cell名からcellIndexを取得
+	void changePartCell(int partId, int cellIndex);	//パーツIDを指定し、セルを入れ替える(cellIndex==-1ならデフォルト)
 
 	/** プレイヤー本体の位置を設定します */
 	void setPosition(float x, float y);
@@ -149,6 +153,7 @@ private:
 	
 	
 	bool				m_partVisible[PART_VISIBLE_MAX];
+	int					m_insteadCellIndex[PART_VISIBLE_MAX];	//cellの差し替わり番号 未使用時は-1
 
 	State				m_state;
 	int					m_priorityPartIndex[PART_VISIBLE_MAX];	//描画優先順でpartIndexを保存しておく  priority: [0] > [max]

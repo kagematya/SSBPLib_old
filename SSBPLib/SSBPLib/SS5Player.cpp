@@ -50,6 +50,7 @@ SS5Player::SS5Player(const ResourceSet *resource, SS5Renderer *renderer, SS5Even
 void SS5Player::initialize()
 {
 	std::fill(std::begin(m_partVisible), std::end(m_partVisible), true);
+	std::fill(std::begin(m_insteadCellIndex), std::end(m_insteadCellIndex), -1);
 	std::fill(std::begin(m_priorityPartIndex), std::end(m_priorityPartIndex), -1);
 
 	m_state.init();
@@ -212,7 +213,7 @@ void SS5Player::releaseParts()
 void SS5Player::setPartsParentage()
 {
 	ToPointer ptr(m_currentRs->m_data);
-	int numParts = m_currentAnimeRef->m_numParts;
+	int numParts = getPartNum();
 
 	//親子関係を設定
 	for (int partIndex = 0; partIndex < numParts; partIndex++)
@@ -238,6 +239,45 @@ void SS5Player::setPartsParentage()
 	}
 }
 
+
+
+//ラベル名からラベルの設定されているフレームを取得
+//ラベルが存在しない場合は戻り値が-1となります。
+//ラベル名が全角でついていると取得に失敗します。
+int SS5Player::getLabelToFrame(char* findLabelName)
+{
+	ToPointer ptr(m_currentRs->m_data);
+	const AnimationData* animeData = m_currentAnimeRef->m_animationData;
+
+	if (!animeData->labelData) return -1;
+	const ss_offset* labelDataIndex = static_cast<const ss_offset*>(ptr(animeData->labelData));
+
+
+	for (int idx = 0; idx < animeData->labelNum; idx++ )
+	{
+		if (!labelDataIndex[idx]) return -1;
+		const ss_u16* labelDataArray = static_cast<const ss_u16*>(ptr(labelDataIndex[idx]));
+
+		DataArrayReader reader(labelDataArray);
+
+		LabelData ldata;
+		ss_offset offset = reader.readOffset();
+		const char* str = ptr.toString(offset);
+		int labelFrame = reader.readU16();
+		ldata.m_str = str;
+		ldata.m_frameNo = labelFrame;
+
+		if (ldata.m_str.compare(findLabelName) == 0 )
+		{
+			//同じ名前のラベルが見つかった
+			return (ldata.m_frameNo);
+		}
+	}
+
+	return -1;
+}
+
+
 //パーツ数を取得
 int SS5Player::getPartNum() const
 {
@@ -249,7 +289,7 @@ const char* SS5Player::getPartName(int partId) const
 {
 	ToPointer ptr(m_currentRs->m_data);
 	
-	SS_ASSERT2(partId >= 0 && partId < m_currentAnimeRef->m_numParts, "partId is out of range.");
+	SS_ASSERT2(partId >= 0 && partId < getPartNum(), "partId is out of range.");
 
 	const PartData* partData = m_currentAnimeRef->getPartData(partId);
 	const char* name = ptr.toString(partData->name);
@@ -303,49 +343,30 @@ bool SS5Player::getPartState(ResluteState& result, const char* name) const
 }
 
 
-//ラベル名からラベルの設定されているフレームを取得
-//ラベルが存在しない場合は戻り値が-1となります。
-//ラベル名が全角でついていると取得に失敗します。
-int SS5Player::getLabelToFrame(char* findLabelName)
-{
-	ToPointer ptr(m_currentRs->m_data);
-	const AnimationData* animeData = m_currentAnimeRef->m_animationData;
-
-	if (!animeData->labelData) return -1;
-	const ss_offset* labelDataIndex = static_cast<const ss_offset*>(ptr(animeData->labelData));
-
-
-	for (int idx = 0; idx < animeData->labelNum; idx++ )
-	{
-		if (!labelDataIndex[idx]) return -1;
-		const ss_u16* labelDataArray = static_cast<const ss_u16*>(ptr(labelDataIndex[idx]));
-
-		DataArrayReader reader(labelDataArray);
-
-		LabelData ldata;
-		ss_offset offset = reader.readOffset();
-		const char* str = ptr.toString(offset);
-		int labelFrame = reader.readU16();
-		ldata.m_str = str;
-		ldata.m_frameNo = labelFrame;
-
-		if (ldata.m_str.compare(findLabelName) == 0 )
-		{
-			//同じ名前のラベルが見つかった
-			return (ldata.m_frameNo);
-		}
-	}
-
-	return -1;
-}
-
 //特定パーツの表示、非表示を設定します
 //パーツ番号はスプライトスタジオのフレームコントロールに配置されたパーツが
 //プライオリティでソートされた後、上に配置された順にソートされて決定されます。
-void SS5Player::setPartVisible(int partNo, bool flg)
+void SS5Player::setPartVisible(int partId, bool flg)
 {
-	m_partVisible[partNo] = flg;
+	SS_ASSERT2(partId >= 0 && partId < getPartNum(), "partId is out of range.");
+	m_partVisible[partId] = flg;
 }
+
+
+//cell名からcellIndexを取得
+int SS5Player::indexOfCell(const char* cellName) const
+{
+	return m_currentRs->m_cellCache->indexOfCell(cellName);
+}
+
+//パーツIDを指定し、セルを入れ替える(cellIndex==-1ならデフォルト)
+void SS5Player::changePartCell(int partId, int cellIndex)
+{
+	SS_ASSERT2(partId >= 0 && partId < getPartNum(), "partId is out of range.");
+	m_insteadCellIndex[partId] = cellIndex;
+}
+
+
 
 // インスタンスパーツが再生するアニメを変更します。
 bool SS5Player::changeInstanceAnime(std::string partsname, std::string animename)
@@ -369,16 +390,12 @@ bool SS5Player::changeInstanceAnime(std::string partsname, std::string animename
 	return false;
 }
 
+
 void SS5Player::setFrame(int frameNo)
 {
-	{
-		// フリップに変化があったときは必ず描画を更新する
-		CustomSprite* root = &m_parts.at(0);
-
-		root->m_isStateChanged=true;
-	}
-
-
+	// フリップに変化があったときは必ず描画を更新する
+	m_parts[0].m_isStateChanged = true;	//root.
+	
 
 	ToPointer ptr(m_currentRs->m_data);
 	
@@ -409,7 +426,11 @@ void SS5Player::setFrame(int frameNo)
 
 		CustomSprite* sprite = &m_parts.at(partIndex);
 
+
 		int cellIndex_ = state.m_cellIndex;
+		if(m_insteadCellIndex[partIndex] >= 0){
+			cellIndex_ = m_insteadCellIndex[partIndex];	//cellが差し替わっていればそっちを使う
+		}
 		const CellRef* cellRef = cellIndex_ >= 0 ? m_currentRs->m_cellCache->getReference(cellIndex_) : nullptr;
 
 		sprite->m_texture = -1;

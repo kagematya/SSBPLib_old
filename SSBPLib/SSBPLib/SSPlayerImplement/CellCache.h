@@ -33,6 +33,9 @@ public:
 	/** 指定番号のCellRefを返す */
 	const CellRef* getReference(int index) const;
 
+	/** cell名からindexを返す */
+	int indexOfCell(const std::string &cellName) const;
+
 
 	//指定したCellMapのテクスチャ名を取得する
 	std::string getTexturePath(int cellMapIndex) const;
