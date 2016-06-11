@@ -15,7 +15,7 @@ public:
 
 		
 	virtual TextureID SSTextureLoad(const char* pszFileName) = 0;
-	virtual bool SSTextureRelese(TextureID handle) = 0;
+	virtual bool SSTextureRelease(TextureID handle) = 0;
 	
 
 	/**

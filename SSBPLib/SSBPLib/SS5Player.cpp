@@ -75,7 +75,7 @@ SS5Player::~SS5Player()
 
 	//テクスチャの解放イベントを投げる
 	for(TextureID textureid : m_textures){
-		m_eventListener->SSTextureRelese(textureid);
+		m_eventListener->SSTextureRelease(textureid);
 	}
 	m_textures.clear();
 }
@@ -526,6 +526,7 @@ void SS5Player::setFrame(int frameNo)
 			//独立動作の場合
 			if (ips.m_independent){
 				//memo:この辺り、updateのほうに持って行きたいが・・・
+				//deltaはフレーム数を意味してるらしい。
 				float dt = 1000.0f/60.0f;
 				float delta = sprite->m_ssplayer->getAnimeFPS() / dt;	//ゲームFPSからアニメーション時間を求める
 
