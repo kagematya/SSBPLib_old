@@ -203,9 +203,22 @@ void SS5Player::allocParts(int numParts)
 
 void SS5Player::releaseParts()
 {
+	for(int partIndex = 0; partIndex < m_parts.size(); ++partIndex){
+		CustomSprite* sprite = &m_parts[partIndex];
+
+		//ChildPlayerがあるなら、spriteを破棄する前にリリースイベントを飛ばす
+		if(sprite->m_haveChildPlayer){
+			m_eventListener->ChildPlayerRelease(partIndex);
+		}
+		
+		sprite->finalize();
+	}
+
+#if 0
 	for(CustomSprite &sprite : m_parts){
 		sprite.finalize();
 	}
+#endif
 
 	//m_parts.clear();
 }
@@ -219,15 +232,23 @@ void SS5Player::setPartsParentage()
 	for (int partIndex = 0; partIndex < numParts; partIndex++)
 	{
 		const PartData* partData = m_currentAnimeRef->getPartData(partIndex);
-		CustomSprite* sprite = &m_parts.at(partIndex);
+		CustomSprite* sprite = &m_parts[partIndex];
 		
 		if (partIndex > 0){
-			sprite->m_parent = &m_parts.at(partData->parentIndex);
+			sprite->m_parent = &m_parts[partData->parentIndex];
 		}
 		else{
 			sprite->m_parent = nullptr;
 		}
 
+#if 1
+		//インスタンスパーツならChildPlayerの生成イベントを飛ばす
+		if(partData->type == PARTTYPE_INSTANCE){
+			std::string refanimeName = ptr.toString(partData->refname);
+			sprite->m_haveChildPlayer = m_eventListener->ChildPlayerLoad(partIndex, refanimeName);
+		}
+#endif
+#if 0
 		//インスタンスパーツの生成
 		std::string refanimeName = ptr.toString(partData->refname);
 
@@ -236,6 +257,7 @@ void SS5Player::setPartsParentage()
 			sprite->m_ssplayer.reset( new ss::SS5Player(m_currentRs, m_renderer, m_eventListener, refanimeName) );	//todo:これそのまま_rendererとか_eventListenerとかつっこんでいいかは要検討::eventlistenerにcreateplayerのイベント持たせるとか?
 			//sprite->m_ssplayer->play(refanimeName);				 // アニメーション名を指定(ssae名/アニメーション名も可能、詳しくは後述)
 		}
+#endif
 	}
 }
 
@@ -311,18 +333,15 @@ int SS5Player::indexOfPart(const char* partName) const
 
 
 //現在のフレームでのパーツステータスを取得
-bool SS5Player::getPartState(PartState& result, const char* name) const
+bool SS5Player::getPartState(PartState& result, int partId) const
 {
+	assert(partId >= 0 && partId < m_parts.size());
 	//パーツをひいてくる
-	int partIndex = indexOfPart(name);
-	if(partIndex < 0){
-		return false;
-	}
-	const PartData* partData = m_currentAnimeRef->getPartData(partIndex);
+	const PartData* partData = m_currentAnimeRef->getPartData(partId);
 
 	//必要に応じて取得するパラメータを追加してください。
 	//当たり判定などのパーツに付属するフラグを取得する場合は　partData　のメンバを参照してください。
-	const CustomSprite* sprite = &m_parts.at(partIndex);
+	const CustomSprite* sprite = &m_parts[partId];
 	const SSMatrix& mat = sprite->m_state.m_mat;
 
 	mat.getTranslation(&result.m_x, &result.m_y, &result.m_z);
@@ -340,6 +359,12 @@ bool SS5Player::getPartState(PartState& result, const char* name) const
 	result.m_part_alphaBlendType = partData->alphaBlendType;	// BlendType
 
 	return true;
+}
+
+bool SS5Player::getPartState(PartState& result, const char* name) const
+{
+	int partIndex = indexOfPart(name);		//indexに変換
+	return getPartState(result, partIndex);
 }
 
 
@@ -367,7 +392,7 @@ void SS5Player::changePartCell(int partId, int cellIndex)
 }
 
 
-
+#if 0
 // インスタンスパーツが再生するアニメを変更します。
 bool SS5Player::changeInstanceAnime(std::string partsname, std::string animename)
 {
@@ -389,6 +414,7 @@ bool SS5Player::changeInstanceAnime(std::string partsname, std::string animename
 
 	return false;
 }
+#endif
 
 
 void SS5Player::setFrame(int frameNo)
@@ -519,7 +545,7 @@ void SS5Player::setFrame(int frameNo)
 			InstancePartStatus ips;
 			ips.readInstancePartStatus(reader, flags_);	//データ読み取り
 
-
+#if 0
 			//タイムライン上の時間 （絶対時間）
 			int time = frameNo;		//todo:timeじゃなくてframeっぽい
 
@@ -541,6 +567,11 @@ void SS5Player::setFrame(int frameNo)
 			//インスタンスパラメータを設定
 			sprite->m_ssplayer->setAlpha(state.m_opacity);
 			sprite->m_ssplayer->setRotation(state.m_rotationX, state.m_rotationY, state.m_rotationZ);
+#else
+			//ここでsetframe渡したいんだが行列の更新とかはこの下のタイミングなので、時間情報はspriteに保存してもらうことにした
+			//独立動作時のframe計算はしない事にした。アプリ側に任せる
+			sprite->m_instancePartStatus = ips;
+#endif
 		}
 
 	}
@@ -566,10 +597,20 @@ void SS5Player::setFrame(int frameNo)
 		int rootOpacity = m_state.m_opacity;
 		
 		for (int partIndex = 0; partIndex < m_currentAnimeRef->m_numParts; partIndex++){
-			CustomSprite* sprite = &m_parts.at(partIndex);
+			CustomSprite* sprite = &m_parts[partIndex];
 
 			if (sprite->m_isStateChanged){			
 				sprite->updateMatrixAndOpacity(rootMatrix, rootOpacity);
+			}
+			if(sprite->m_haveChildPlayer){
+				//インスタンスアニメーション持ちだったときは座標等を伝える
+				PartState partState;
+				getPartState(partState, partIndex);
+				InstancePartStatus &ips = sprite->m_instancePartStatus;
+
+				m_eventListener->ChildPlayerSetFrame(
+					partIndex, ips.getFrame(frameNo), ips.m_independent, partState
+				);
 			}
 		}
 	}
@@ -595,6 +636,7 @@ void SS5Player::draw()
 		int partIndex = m_priorityPartIndex[index];	//描画優先順に沿ってパーツを描画する
 		//スプライトの表示
 		CustomSprite* sprite = &m_parts.at(partIndex);
+#if 0
 		if (sprite->m_ssplayer){
 			//インスタンスパーツの場合は子供のプレイヤーを再生
 			sprite->m_ssplayer->update(0);
@@ -609,6 +651,17 @@ void SS5Player::draw()
 				}
 			}
 		}
+#else
+		//ユーザーが任意に非表示としたパーツは描画しない && パーツのvisibleを考慮する
+		if(m_partVisible[partIndex] && sprite->m_state.m_isVisibled){
+			if (sprite->m_texture != -1){
+				m_renderer->drawSprite(sprite->m_quad, sprite->m_texture);	//sprite->_blendfunc
+			}
+			if(sprite->m_haveChildPlayer){
+				m_eventListener->ChildPlayerDraw(partIndex);	//インスタンスアニメーションがある場合は描画イベントを飛ばす
+			}
+		}
+#endif
 	}
 }
 

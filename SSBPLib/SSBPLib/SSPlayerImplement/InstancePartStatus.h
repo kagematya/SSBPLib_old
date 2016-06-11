@@ -24,7 +24,8 @@ public:
 	void readInstancePartStatus(DataArrayReader &readerm, int readFlags);
 
 	//読み取り後になんか計算してる部分を抜き出した
-	int getTime(int time) const;	//timeというかframeだと思う
+	//親の時間を元に、インスタンスパーツのフレームを計算する
+	int getFrame(int frame) const;
 
 private:
 	int endFrame() const;	//フラグ情報をみて終了フレームを返す

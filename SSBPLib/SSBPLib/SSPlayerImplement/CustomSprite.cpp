@@ -7,9 +7,8 @@ namespace ss{
 	
 CustomSprite::CustomSprite()
 	: m_isStateChanged(true)
-	, m_liveFrame(0.0f)
 	, m_parent(nullptr)
-	, m_ssplayer(nullptr)
+	, m_haveChildPlayer(false)
 {
 	initialize();
 }
@@ -25,10 +24,10 @@ void CustomSprite::initialize()
 	m_mat.setupIdentity();
 	m_state.init();
 	m_isStateChanged = true;
-	m_liveFrame = 0.0f;
 	m_parent = nullptr;
 
-	m_ssplayer.reset();
+	m_haveChildPlayer = false;
+	m_instancePartStatus = InstancePartStatus();
 
 	m_quad = SSV3F_C4B_T2F_Quad();
 	m_texture = 0;
@@ -42,7 +41,7 @@ void CustomSprite::initialize()
 void CustomSprite::finalize()
 {
 	m_parent = nullptr;
-	m_ssplayer.reset();
+	m_haveChildPlayer = false;
 }
 
 
@@ -71,6 +70,7 @@ void CustomSprite::updateMatrixAndOpacity(const SSMatrix& rootMatrix, int rootOp
 	//アルファの伝播
 	m_state.m_opacity = ( m_state.m_opacity * parentOpacity ) / 255.0;
 
+#if 0 //下のほうの計算が気になるがインスタンスアニメーションへの更新はこの外側でやることにする
 	//インスタンスパーツの親を設定
 	if (m_ssplayer){
 		float x, y;
@@ -80,7 +80,7 @@ void CustomSprite::updateMatrixAndOpacity(const SSMatrix& rootMatrix, int rootOp
 		m_ssplayer->setScale(m_state.m_scaleX, m_state.m_scaleY);
 		m_ssplayer->setRotation(m_state.m_rotationX, m_state.m_rotationY, m_state.m_rotationZ);
 	}
-	
+#endif
 
 	//cellの原点計算を行う
 	SSMatrix tmp;

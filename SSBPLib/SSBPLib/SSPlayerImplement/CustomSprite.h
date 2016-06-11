@@ -5,6 +5,7 @@
 #include "SSBPLib/common/ssplayer_matrix.h"
 #include "SSBPLib/SS5PlayerTypes.h"
 #include "SSBPLib/SSPlayerStatus.h"
+#include "SSBPLib/SSPlayerImplement/InstancePartStatus.h"
 
 namespace ss{
 class SS5Player;
@@ -18,9 +19,10 @@ public:
 	SSMatrix			m_mat;			//今のところ、cellのworldMatrixって感じだ。
 	State				m_state;
 	bool				m_isStateChanged;
-	float				m_liveFrame;
 	CustomSprite*		m_parent;
-	std::shared_ptr<ss::SS5Player> m_ssplayer;	//customspriteはコピー可能にしときたいのでshared_ptr
+	
+	bool				m_haveChildPlayer;		//ChildPlayer(インスタンスアニメーション)を持っているならtrue
+	InstancePartStatus  m_instancePartStatus;	//インスタンスアニメーションの時間制御変数
 	
 	void initialize();
 	void finalize();

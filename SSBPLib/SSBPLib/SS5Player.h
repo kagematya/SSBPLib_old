@@ -81,6 +81,7 @@ public:
 	int getPartNum() const;							//パーツ数を取得
 	const char* getPartName(int partId) const;		//indexからパーツ名を取得
 	int indexOfPart(const char* partName) const;	//パーツ名からindexを取得
+	bool getPartState(PartState& result, int partId) const;			//indexからパーツ情報を取得
 	bool getPartState(PartState& result, const char* name) const;	//パーツ名から、パーツ情報を取得
 
 	/** パーツの表示、非表示を設定します */
@@ -106,6 +107,7 @@ public:
 	void setAlpha(int alpha);
 	int getAlpha() const;
 
+#if 0
 	/**
 	 * 名前を指定してパーツの再生するインスタンスアニメを変更します。
 	 * 指定したパーツがインスタンスパーツでない場合、falseを返します.
@@ -113,6 +115,7 @@ public:
 	 * 現在再生しているアニメを指定することは入れ子となり無限ループとなるためできません。
 	 */
 	bool changeInstanceAnime(std::string partsname, std::string animeName);
+#endif
 
 	/* プレイヤー本体の反転を設定します */
 	void setFlip(bool flipX, bool flipY);

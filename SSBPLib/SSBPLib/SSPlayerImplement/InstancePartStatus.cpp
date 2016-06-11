@@ -58,13 +58,13 @@ void InstancePartStatus::readInstancePartStatus(DataArrayReader &reader, int rea
 
 
 //読み取り後の計算
-int InstancePartStatus::getTime(int time) const
+int InstancePartStatus::getFrame(int frame) const
 {
-	int	reftime = static_cast<int>(time * m_refSpeed) - m_refKeyframe; //開始から現在の経過時間
-	if(reftime < 0){ return time; }									   //そもそも生存時間に存在していない
+	int	reftime = static_cast<int>(frame * m_refSpeed) - m_refKeyframe; //開始から現在の経過時間
+	if(reftime < 0){ return frame; }									   //そもそも生存時間に存在していない
 
 	int inst_scale = (m_refEndframe - m_refStartframe) + 1; //インスタンスの尺
-	if (inst_scale <= 0){ return time; }					//尺が０もしくはマイナス（あり得ない
+	if (inst_scale <= 0){ return frame; }					//尺が０もしくはマイナス（あり得ない
 
 	int	nowloop = reftime / inst_scale;		//現在までのループ数
 	int nowframe = reftime % inst_scale;	//ループを加味しないインスタンスアニメ内のフレーム
