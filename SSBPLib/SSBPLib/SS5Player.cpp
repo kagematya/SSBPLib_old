@@ -311,7 +311,7 @@ int SS5Player::indexOfPart(const char* partName) const
 
 
 //現在のフレームでのパーツステータスを取得
-bool SS5Player::getPartState(ResluteState& result, const char* name) const
+bool SS5Player::getPartState(PartState& result, const char* name) const
 {
 	//パーツをひいてくる
 	int partIndex = indexOfPart(name);

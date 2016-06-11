@@ -1,10 +1,12 @@
 ﻿#pragma once
 
 #include "SS5PlayerTypes.h"
+#include <string>
 
 namespace ss{
 class SS5Player;
 struct UserData;
+struct PartState;
 
 
 /** ロードイベントなどを捕まえるのでこれを継承して作ってください */
@@ -13,10 +15,33 @@ public:
 	SS5EventListener(){}
 	virtual ~SS5EventListener(){}
 
-		
+	//テクスチャのロード・リリースのイベント
 	virtual TextureID SSTextureLoad(const char* pszFileName) = 0;
 	virtual bool SSTextureRelease(TextureID handle) = 0;
 	
+
+	/**
+	 * インスタンスアニメーションのロード・リリースのイベント
+	 * @param partsIndex	親になるパーツのindex
+	 * @param partsName		親になるパーツの名前
+	 * @param animName		再生アニメーション名
+	 */
+	virtual void ChildPlayerLoad(int partsIndex, const std::string& partsName, const std::string& animName) = 0;
+	virtual void ChildPlayerRelease(int partIndex, const std::string& partsName) = 0;
+	
+	/**
+	 * 更新時などに呼び出されるSet系のイベント。親のパーツの情報を伝播させるために必要
+	 * @param partsIndex	親になるパーツのindex
+	 * @param partsName		親になるパーツの名前
+	 * @param frame			インスタンスアニメの設定で指定したframeの計算結果
+	 * @param independent	インスタンスアニメの設定で独立動作を指定していればtrue
+	 * @param partState		親パーツの情報(座標とかが入っているので、子供のPlayerにセットしてください)
+	 */
+	virtual void ChildPlayerSetFrame(
+		int partIndex, const std::string& partsName,
+		int frame, bool independent, const PartState& partState
+	) = 0;
+
 
 	/**
 	 * ユーザーデータがあったときに呼ばれる

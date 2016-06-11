@@ -76,11 +76,11 @@ struct State {
 };
 
 /**
- * ResluteState
+ * PartState
  * ゲーム側に返すパーツステータス。
  * 必要に応じてカスタマイズしてください。
  */
-struct ResluteState
+struct PartState
 {
 	float m_x;						/// X座標（親子関係計算済）
 	float m_y;						/// Y座標（親子関係計算済）

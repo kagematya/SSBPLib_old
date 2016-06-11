@@ -15,7 +15,7 @@ namespace ss{
 class CustomSprite;
 struct AnimeRef;
 class ResourceSet;
-struct ResluteState;
+struct PartState;
 class SS5Renderer;
 class SS5EventListener;
 
@@ -81,7 +81,7 @@ public:
 	int getPartNum() const;							//パーツ数を取得
 	const char* getPartName(int partId) const;		//indexからパーツ名を取得
 	int indexOfPart(const char* partName) const;	//パーツ名からindexを取得
-	bool getPartState(ResluteState& result, const char* name) const;	//パーツ名から、パーツ情報を取得
+	bool getPartState(PartState& result, const char* name) const;	//パーツ名から、パーツ情報を取得
 
 	/** パーツの表示、非表示を設定します */
 	void setPartVisible( int partId, bool flg );
