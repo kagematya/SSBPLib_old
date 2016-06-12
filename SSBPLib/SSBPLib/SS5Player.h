@@ -107,16 +107,6 @@ public:
 	void setAlpha(int alpha);
 	int getAlpha() const;
 
-#if 0
-	/**
-	 * 名前を指定してパーツの再生するインスタンスアニメを変更します。
-	 * 指定したパーツがインスタンスパーツでない場合、falseを返します.
-	 * 再生するアニメの名前は"ssae名/アニメーション名"として再生してください。
-	 * 現在再生しているアニメを指定することは入れ子となり無限ループとなるためできません。
-	 */
-	bool changeInstanceAnime(std::string partsname, std::string animeName);
-#endif
-
 	/* プレイヤー本体の反転を設定します */
 	void setFlip(bool flipX, bool flipY);
 	void getFlip(bool *flipX, bool *flipY) const;

@@ -66,21 +66,9 @@ void CustomSprite::updateMatrixAndOpacity(const SSMatrix& rootMatrix, int rootOp
 	m_mat = mat;
 	m_state.m_mat = mat;
 
-	
 	//アルファの伝播
 	m_state.m_opacity = ( m_state.m_opacity * parentOpacity ) / 255.0;
 
-#if 0 //下のほうの計算が気になるがインスタンスアニメーションへの更新はこの外側でやることにする
-	//インスタンスパーツの親を設定
-	if (m_ssplayer){
-		float x, y;
-		m_mat.getTranslation(&x, &y);
-
-		m_ssplayer->setPosition(x, y);
-		m_ssplayer->setScale(m_state.m_scaleX, m_state.m_scaleY);
-		m_ssplayer->setRotation(m_state.m_rotationX, m_state.m_rotationY, m_state.m_rotationZ);
-	}
-#endif
 
 	//cellの原点計算を行う
 	SSMatrix tmp;

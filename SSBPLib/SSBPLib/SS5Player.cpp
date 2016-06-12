@@ -214,12 +214,6 @@ void SS5Player::releaseParts()
 		sprite->finalize();
 	}
 
-#if 0
-	for(CustomSprite &sprite : m_parts){
-		sprite.finalize();
-	}
-#endif
-
 	//m_parts.clear();
 }
 
@@ -241,23 +235,11 @@ void SS5Player::setPartsParentage()
 			sprite->m_parent = nullptr;
 		}
 
-#if 1
 		//インスタンスパーツならChildPlayerの生成イベントを飛ばす
 		if(partData->type == PARTTYPE_INSTANCE){
 			std::string refanimeName = ptr.toString(partData->refname);
 			sprite->m_haveChildPlayer = m_eventListener->ChildPlayerLoad(partIndex, getPartName(partIndex), refanimeName);
 		}
-#endif
-#if 0
-		//インスタンスパーツの生成
-		std::string refanimeName = ptr.toString(partData->refname);
-
-		if (refanimeName != ""){
-			//インスタンスパーツが設定されている
-			sprite->m_ssplayer.reset( new ss::SS5Player(m_currentRs, m_renderer, m_eventListener, refanimeName) );	//todo:これそのまま_rendererとか_eventListenerとかつっこんでいいかは要検討::eventlistenerにcreateplayerのイベント持たせるとか?
-			//sprite->m_ssplayer->play(refanimeName);				 // アニメーション名を指定(ssae名/アニメーション名も可能、詳しくは後述)
-		}
-#endif
 	}
 }
 
@@ -392,30 +374,6 @@ void SS5Player::changePartCell(int partId, int cellIndex)
 }
 
 
-#if 0
-// インスタンスパーツが再生するアニメを変更します。
-bool SS5Player::changeInstanceAnime(std::string partsname, std::string animename)
-{
-	//名前からパーツを取得
-	int partIndex = indexOfPart(partsname.c_str());
-	if(partIndex < 0){
-		return false;
-	}
-
-	CustomSprite* sprite = &m_parts.at(partIndex);
-	if (sprite->m_ssplayer){
-		//パーツがインスタンスパーツの場合は再生するアニメを設定する
-		//アニメが入れ子にならないようにチェックする
-		if (m_currentAnimeRef->m_animeName != animename){	//todo:package名付け足す必要あるかも
-			sprite->m_ssplayer->play(animename);
-			return true;
-		}
-	}
-
-	return false;
-}
-#endif
-
 
 void SS5Player::setFrame(int frameNo)
 {
@@ -541,37 +499,12 @@ void SS5Player::setFrame(int frameNo)
 
 		//インスタンスパーツの場合
 		if (partData->type == PARTTYPE_INSTANCE){
-
 			InstancePartStatus ips;
 			ips.readInstancePartStatus(reader, flags_);	//データ読み取り
 
-#if 0
-			//タイムライン上の時間 （絶対時間）
-			int time = frameNo;		//todo:timeじゃなくてframeっぽい
-
-			//独立動作の場合
-			if (ips.m_independent){
-				//memo:この辺り、updateのほうに持って行きたいが・・・
-				//deltaはフレーム数を意味してるらしい。
-				float dt = 1000.0f/60.0f;
-				float delta = sprite->m_ssplayer->getAnimeFPS() / dt;	//ゲームFPSからアニメーション時間を求める
-
-				sprite->m_liveFrame += delta;
-				time = static_cast<int>(sprite->m_liveFrame);
-			}
-
-			//インスタンス用SSPlayerに再生フレームを設定する
-			time = ips.getTime(time);
-			sprite->m_ssplayer->setCurrentFrame(time);
-
-			//インスタンスパラメータを設定
-			sprite->m_ssplayer->setAlpha(state.m_opacity);
-			sprite->m_ssplayer->setRotation(state.m_rotationX, state.m_rotationY, state.m_rotationZ);
-#else
 			//ここでsetframe渡したいんだが行列の更新とかはこの下のタイミングなので、時間情報はspriteに保存してもらうことにした
 			//独立動作時のframe計算はしない事にした。アプリ側に任せる
 			sprite->m_instancePartStatus = ips;
-#endif
 		}
 
 	}
@@ -637,22 +570,7 @@ void SS5Player::draw()
 		int partIndex = m_priorityPartIndex[index];	//描画優先順に沿ってパーツを描画する
 		//スプライトの表示
 		CustomSprite* sprite = &m_parts.at(partIndex);
-#if 0
-		if (sprite->m_ssplayer){
-			//インスタンスパーツの場合は子供のプレイヤーを再生
-			sprite->m_ssplayer->update(0);
-			sprite->m_ssplayer->draw();
-		}
-		else{
 
-			if (m_partVisible[partIndex]){		//ユーザーが任意に非表示としたパーツは描画しない
-				if ((sprite->m_texture != -1) && (sprite->m_state.m_isVisibled == true)){
-
-					m_renderer->drawSprite(sprite->m_quad, sprite->m_texture);	//sprite->_blendfunc
-				}
-			}
-		}
-#else
 		//ユーザーが任意に非表示としたパーツは描画しない && パーツのvisibleを考慮する
 		if(m_partVisible[partIndex] && sprite->m_state.m_isVisibled){
 			if (sprite->m_texture != -1){
@@ -662,7 +580,6 @@ void SS5Player::draw()
 				m_eventListener->ChildPlayerDraw(partIndex, getPartName(partIndex));	//インスタンスアニメーションがある場合は描画イベントを飛ばす
 			}
 		}
-#endif
 	}
 }
 
