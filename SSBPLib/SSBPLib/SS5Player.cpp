@@ -208,7 +208,7 @@ void SS5Player::releaseParts()
 
 		//ChildPlayerがあるなら、spriteを破棄する前にリリースイベントを飛ばす
 		if(sprite->m_haveChildPlayer){
-			m_eventListener->ChildPlayerRelease(partIndex);
+			m_eventListener->ChildPlayerRelease(partIndex, getPartName(partIndex));
 		}
 		
 		sprite->finalize();
@@ -245,7 +245,7 @@ void SS5Player::setPartsParentage()
 		//インスタンスパーツならChildPlayerの生成イベントを飛ばす
 		if(partData->type == PARTTYPE_INSTANCE){
 			std::string refanimeName = ptr.toString(partData->refname);
-			sprite->m_haveChildPlayer = m_eventListener->ChildPlayerLoad(partIndex, refanimeName);
+			sprite->m_haveChildPlayer = m_eventListener->ChildPlayerLoad(partIndex, getPartName(partIndex), refanimeName);
 		}
 #endif
 #if 0
@@ -609,7 +609,8 @@ void SS5Player::setFrame(int frameNo)
 				InstancePartStatus &ips = sprite->m_instancePartStatus;
 
 				m_eventListener->ChildPlayerSetFrame(
-					partIndex, ips.getFrame(frameNo), ips.m_independent, partState
+					partIndex, getPartName(partIndex),
+					ips.getFrame(frameNo), ips.m_independent, partState
 				);
 			}
 		}
@@ -658,7 +659,7 @@ void SS5Player::draw()
 				m_renderer->drawSprite(sprite->m_quad, sprite->m_texture);	//sprite->_blendfunc
 			}
 			if(sprite->m_haveChildPlayer){
-				m_eventListener->ChildPlayerDraw(partIndex);	//インスタンスアニメーションがある場合は描画イベントを飛ばす
+				m_eventListener->ChildPlayerDraw(partIndex, getPartName(partIndex));	//インスタンスアニメーションがある場合は描画イベントを飛ばす
 			}
 		}
 #endif

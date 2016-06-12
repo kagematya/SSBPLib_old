@@ -23,22 +23,27 @@ public:
 	/**
 	 * インスタンスアニメーションのロード・リリースのイベント。ロード成功時はtrue返してください
 	 * @param partsIndex	親になるパーツのindex
+	 * @param partsName		親になるパーツの名前
 	 * @param animName		再生アニメーション名
 	 */
-	virtual bool ChildPlayerLoad(int partsIndex, const std::string& animName) = 0;
-	virtual void ChildPlayerRelease(int partIndex) = 0;
+	virtual bool ChildPlayerLoad(int partsIndex, const std::string& partsName, const std::string& animName) = 0;
+	virtual void ChildPlayerRelease(int partIndex, const std::string& partsName) = 0;
 	
 	/**
 	 * 更新時などに呼び出されるSet系のイベント。親のパーツの情報を伝播させるために必要
 	 * @param partsIndex	親になるパーツのindex
+	 * @param partsName		親になるパーツの名前
 	 * @param frame			インスタンスアニメの設定で指定したframeの計算結果
 	 * @param independent	インスタンスアニメの設定で独立動作を指定していればtrue
 	 * @param partState		親パーツの情報(座標とかが入っているので、子供のPlayerにセットしてください)
 	 */
-	virtual void ChildPlayerSetFrame(int partIndex, int frame, bool independent, const PartState& partState) = 0;
+	virtual void ChildPlayerSetFrame(
+		int partIndex, const std::string& partsName,
+		int frame, bool independent, const PartState& partState
+	) = 0;
 
 	/** drawするタイミングでの呼び出し */
-	virtual void ChildPlayerDraw(int partIndex) = 0;
+	virtual void ChildPlayerDraw(int partIndex, const std::string& partsName) = 0;
 
 
 	/**
